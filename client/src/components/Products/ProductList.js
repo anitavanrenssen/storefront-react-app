@@ -11,38 +11,23 @@ const PRODUCTS_QUERY = gql`
     categories {
       name
       products {
+        id
+        inStock
         name
         gallery
+        category
+        prices {
+          currency {
+            symbol
+          }
+          amount
+        }
       }
     }
   }
 `;
 
 class ProductList extends Component {
-  constructor() {
-    super();
-
-    this.getAllDuelists = () => {
-      this.props.client
-        .query({
-          query: gql`
-            {
-              categories {
-                name
-                products {
-                  name
-                  gallery
-                }
-              }
-            }
-          `,
-        })
-        .then((result) => {
-          console.log(result);
-        });
-    };
-  }
-
   render() {
     return (
       <div className={classes.products}>
@@ -52,11 +37,10 @@ class ProductList extends Component {
             if (error) return <p>'Error! ${error.message}'</p>;
             const { categories } = data;
             return categories[0].products.map((product) => (
-              <ProductItem product={product} />
+              <ProductItem key={product.id} product={product} />
             ));
           }}
         </Query>
-        {/* <button onClick={this.getAllDuelists}>data</button> */}
       </div>
     );
   }
