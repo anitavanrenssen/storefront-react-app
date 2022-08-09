@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // components
+import Header from "./components/Layout/Header";
 import ProductList from "./components/Products/ProductList";
 
 // apollo client setup
@@ -14,6 +15,7 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
+        <Header />
         <div>
           <ProductList client={client} />
         </div>

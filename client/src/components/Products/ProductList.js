@@ -30,17 +30,20 @@ const PRODUCTS_QUERY = gql`
 class ProductList extends Component {
   render() {
     return (
-      <div className={classes.products}>
-        <Query query={PRODUCTS_QUERY}>
-          {({ loading, error, data }) => {
-            if (loading) return <p>'Loading...'</p>;
-            if (error) return <p>'Error! ${error.message}'</p>;
-            const { categories } = data;
-            return categories[0].products.map((product) => (
-              <ProductItem key={product.id} product={product} />
-            ));
-          }}
-        </Query>
+      <div>
+        <h1 className={classes.title}>Category name</h1>
+        <div className={classes.products}>
+          <Query query={PRODUCTS_QUERY}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>'Loading...'</p>;
+              if (error) return <p>'Error! ${error.message}'</p>;
+              const { categories } = data;
+              return categories[0].products.map((product) => (
+                <ProductItem key={product.id} product={product} />
+              ));
+            }}
+          </Query>
+        </div>
       </div>
     );
   }
