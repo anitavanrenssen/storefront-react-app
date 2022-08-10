@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import DropdownArrow from "../UI/DropdownArrow";
+import HeaderCurrencySwitcher from "./HeaderCurrencySwitcher";
 import CartIcon from "../Cart/CartIcon";
 
 import classes from "./HeaderActions.module.css";
@@ -9,10 +9,7 @@ class HeaderActions extends Component {
   render() {
     return (
       <div className={classes.actions}>
-        <div className={classes.currencies}>
-          <span className={classes.symbol}>$</span>
-          <DropdownArrow />
-        </div>
+        <HeaderCurrencySwitcher />
         <div>
           <CartIcon />
         </div>

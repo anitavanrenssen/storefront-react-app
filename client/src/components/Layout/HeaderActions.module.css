@@ -6,16 +6,3 @@
   width: 204px;
   gap: 22px;
 }
-
-.currencies {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.symbol {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 160%;
-}
