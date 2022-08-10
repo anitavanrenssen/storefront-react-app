@@ -1,0 +1,27 @@
+.backdrop {
+  position: fixed;
+  top: 78px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background: rgba(57, 55, 72, 0.22);
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  position: fixed;
+  width: 325px;
+  height: 677px;
+  right: 72px;
+  top: 78px;
+  background-color: white;
+  padding: 32px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+}

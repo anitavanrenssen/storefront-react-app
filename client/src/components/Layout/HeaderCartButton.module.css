@@ -1,0 +1,35 @@
+.buttonbadge {
+  padding: 8px 8px 8px 0;
+  position: relative;
+}
+
+.button {
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.badge {
+  position: absolute;
+  top: -1px;
+  right: -5px;
+  background-color: #1d1f22;
+  width: 20px;
+  height: 20px;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.badgenumber {
+  color: #fff;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}

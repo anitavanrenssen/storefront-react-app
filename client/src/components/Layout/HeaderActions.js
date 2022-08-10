@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import HeaderCurrencySwitcher from "./HeaderCurrencySwitcher";
-import CartIcon from "../Cart/CartIcon";
+import HeaderCartButton from "./HeaderCartButton";
 
 import classes from "./HeaderActions.module.css";
 
@@ -11,7 +11,7 @@ class HeaderActions extends Component {
       <div className={classes.actions}>
         <HeaderCurrencySwitcher />
         <div>
-          <CartIcon />
+          <HeaderCartButton onClick={this.props.onShowCart} />
         </div>
       </div>
     );

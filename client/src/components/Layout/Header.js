@@ -17,7 +17,7 @@ class Header extends Component {
           </ul>
         </nav>
         <Logo />
-        <HeaderActions />
+        <HeaderActions onShowCart={this.props.onShowCart} />
       </header>
     );
   }
