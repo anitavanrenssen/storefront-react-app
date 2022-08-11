@@ -1,0 +1,26 @@
+.nav {
+  margin-top: 28px;
+  width: 204px;
+  /* height: 52px; */
+}
+
+.navlinks {
+  display: flex;
+  /* gap: 30px; */
+  list-style-type: none;
+}
+
+.navlinks button {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 0 16px 32px 16px;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+}
+
+.navlinks button:first-child {
+  color: #5ece7b;
+  border-bottom: 2px solid #5ece7b;
+}

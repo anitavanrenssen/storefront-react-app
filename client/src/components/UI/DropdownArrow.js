@@ -4,8 +4,10 @@ import classes from "./DropdownArrow.module.css";
 
 class DropdownArrow extends Component {
   render() {
+    const isDropdownActive = this.props.onDropdown;
+
     return (
-      <div className={classes.arrow}>
+      <div className={isDropdownActive ? classes.arrowrotate : ""}>
         <svg
           width="8"
           height="4"

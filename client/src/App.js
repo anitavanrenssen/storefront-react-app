@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import { Routes, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // components
 import Header from "./components/Layout/Header";
-import ProductList from "./components/Products/ProductList";
+import CategoryPage from "./pages/Categories";
+import ProductPage from "./pages/Products";
+import CartPage from "./pages/Cart";
 import Cart from "./components/Cart/Cart";
 
 // apollo client setup
@@ -38,10 +41,12 @@ class App extends Component {
         {this.state.showCart && (
           <Cart onClose={this.hideCartHandler.bind(this)} />
         )}
-        <Header client={client} onShowCart={this.showCartHandler.bind(this)} />
-        <div>
-          <ProductList client={client} />
-        </div>
+        <Header onShowCart={this.showCartHandler.bind(this)} />
+        <Routes>
+          <Route path="/" element={<CategoryPage />} />
+          <Route path="/product" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
       </ApolloProvider>
     );
   }

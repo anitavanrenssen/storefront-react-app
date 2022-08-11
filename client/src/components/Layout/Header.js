@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import HeaderNavigation from "./HeaderNavigation";
 import Logo from "../UI/Logo";
 import HeaderActions from "./HeaderActions";
 
@@ -9,13 +10,7 @@ class Header extends Component {
   render() {
     return (
       <header className={classes.header}>
-        <nav className={classes.nav}>
-          <ul className={classes.navlinks}>
-            <li>All</li>
-            <li>Clothes</li>
-            <li>Tech</li>
-          </ul>
-        </nav>
+        <HeaderNavigation />
         <Logo />
         <HeaderActions onShowCart={this.props.onShowCart} />
       </header>

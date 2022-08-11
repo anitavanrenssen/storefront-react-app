@@ -36,7 +36,7 @@ class HeaderCurrencySwitcher extends Component {
           onClick={this.toggleDropdownHandler.bind(this)}
         >
           <span className={classes.symbol}>$</span>
-          <DropdownArrow />
+          <DropdownArrow onDropdown={this.state.showDropdownList} />
         </button>
         {this.state.showDropdownList && (
           <ul className={classes.dropdownlist}>
