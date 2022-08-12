@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-// import classes from "./ProductDescription.module.css";
+import classes from "./ProductDescription.module.css";
 
 import { gql } from "graphql-tag";
 import { Query } from "@apollo/client/react/components";
 
 import ProductGallery from "./ProductGallery";
+import ProductDetails from "./ProductDetails";
 
 const PRODUCT_QUERY = gql`
   {
@@ -48,8 +49,15 @@ class ProductDescription extends Component {
             const { product } = data;
 
             return (
-              <div>
+              <div className={classes.productdescription}>
                 <ProductGallery gallery={product.gallery} name={product.name} />
+                <ProductDetails
+                  brand={product.brand}
+                  name={product.name}
+                  attributes={product.attributes}
+                  prices={product.prices}
+                  description={product.description}
+                />
               </div>
             );
           }}

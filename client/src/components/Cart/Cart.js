@@ -8,6 +8,7 @@ class Cart extends Component {
     return (
       <Modal onClose={this.props.onClose}>
         <h3>My Bag</h3>
+       
         <button>
           <Link to="/cart">View Bag</Link>
         </button>

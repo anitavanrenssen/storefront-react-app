@@ -1,0 +1,5 @@
+.productdescription {
+  display: flex;
+  margin: 160px 0 0 100px;
+  gap: 80px;
+}

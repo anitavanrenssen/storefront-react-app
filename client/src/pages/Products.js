@@ -5,7 +5,6 @@ class ProductPage extends Component {
   render() {
     return (
       <div>
-        <h1>Products page</h1>
         <ProductDescription />
       </div>
     );

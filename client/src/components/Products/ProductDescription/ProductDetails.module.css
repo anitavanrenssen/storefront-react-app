@@ -1,0 +1,75 @@
+.brandheading {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+  color: #1d1f22;
+  margin-bottom: 16px;
+}
+
+.nameheading {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+  color: #1d1f22;
+  margin-bottom: 43px;
+}
+
+.attrheading {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 18px;
+  color: #1d1f22;
+  margin-bottom: 8px;
+}
+
+.sizebutton {
+  width: 63px;
+  height: 45px;
+  border: 1px solid #1d1f22;
+  background: #fff;
+}
+
+.sizebutton:hover {
+  background: #1d1f22;
+  color: #fff;
+  cursor: pointer;
+}
+
+.sizebuttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 38px;
+}
+
+.price {
+  width: 86px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.price span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 18px;
+
+  color: #1d1f22;
+}
+
+.description {
+  margin-top: 40px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 159.96%;
+  color: #1d1f22;
+}
