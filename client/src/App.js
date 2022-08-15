@@ -4,9 +4,9 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // components
 import Header from "./components/Layout/Header";
-import CategoryPage from "./pages/Categories";
-import ProductPage from "./pages/Products";
-import CartPage from "./pages/Cart";
+import CategoryPage from "./pages/Categories.page";
+import ProductPage from "./pages/Products.page";
+import CartPage from "./pages/Cart.page";
 import Cart from "./components/Cart/Cart";
 
 // apollo client setup
@@ -44,7 +44,7 @@ class App extends Component {
         <Header onShowCart={this.showCartHandler.bind(this)} />
         <Routes>
           <Route path="/" element={<CategoryPage />} />
-          <Route path="/product" element={<ProductPage />} />
+          <Route path="/product:id" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
       </ApolloProvider>

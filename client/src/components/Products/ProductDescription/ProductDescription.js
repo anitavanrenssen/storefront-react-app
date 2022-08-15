@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classes from "./ProductDescription.module.css";
-
+// import { graphql } from "graphql";
 import { gql } from "graphql-tag";
 import { Query } from "@apollo/client/react/components";
 
@@ -8,9 +8,8 @@ import ProductGallery from "./ProductGallery";
 import ProductDetails from "./ProductDetails";
 
 const PRODUCT_QUERY = gql`
-  {
-    product(id: "huarache-x-stussy-le") {
-      id
+  query Product($id: String!) {
+    product(id: $id) {
       name
       inStock
       gallery
@@ -40,9 +39,10 @@ const PRODUCT_QUERY = gql`
 
 class ProductDescription extends Component {
   render() {
+    const query_variables = { id: this.props.id };
     return (
       <div>
-        <Query query={PRODUCT_QUERY}>
+        <Query query={PRODUCT_QUERY} variables={query_variables}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error! ${error.message}</p>;

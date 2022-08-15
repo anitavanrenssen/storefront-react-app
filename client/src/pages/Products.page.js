@@ -5,7 +5,7 @@ class ProductPage extends Component {
   render() {
     return (
       <div>
-        <ProductDescription />
+        <ProductDescription id={this.props.match.params.id}/>
       </div>
     );
   }

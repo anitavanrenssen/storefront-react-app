@@ -23,13 +23,19 @@ class ProductItem extends Component {
     });
   }
 
+  getIDHandler(e) {
+    console.log(e.target);
+  }
+
   render() {
     return (
       <Card>
         <div
+          key={this.props.product.id}
           className={classes.item}
           onMouseEnter={this.mouseEnterHandler.bind(this)}
           onMouseLeave={this.mouseLeaveHandler.bind(this)}
+          onClick={this.getIDHandler.bind(this)}
         >
           <div className={classes.image}>
             <img
@@ -37,6 +43,9 @@ class ProductItem extends Component {
               alt={this.props.product.name}
             />
             {this.state.showCartButton && <ProductCartButton />}
+            {!this.props.product.inStock && (
+              <div className={classes.outofstock}>Out of Stock</div>
+            )}
           </div>
 
           <div className={classes.content}>
