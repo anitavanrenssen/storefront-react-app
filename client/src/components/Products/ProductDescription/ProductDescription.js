@@ -3,6 +3,7 @@ import classes from "./ProductDescription.module.css";
 // import { graphql } from "graphql";
 import { gql } from "graphql-tag";
 import { Query } from "@apollo/client/react/components";
+import { withRouter } from "react-router-dom";
 
 import ProductGallery from "./ProductGallery";
 import ProductDetails from "./ProductDetails";
@@ -38,11 +39,15 @@ const PRODUCT_QUERY = gql`
 `;
 
 class ProductDescription extends Component {
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    console.log(id);
+  }
+
   render() {
-    const query_variables = { id: this.props.id };
     return (
       <div>
-        <Query query={PRODUCT_QUERY} variables={query_variables}>
+        <Query query={PRODUCT_QUERY} variables={this.id}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error! ${error.message}</p>;
@@ -67,4 +72,4 @@ class ProductDescription extends Component {
   }
 }
 
-export default ProductDescription;
+export default withRouter(ProductDescription);

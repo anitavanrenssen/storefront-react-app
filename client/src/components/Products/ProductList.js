@@ -34,6 +34,10 @@ class ProductList extends Component {
     };
   }
 
+  // productIDHandler(id) {
+  //   this.props.getProductID(id);
+  // }
+
   // componentDidMount() {
   //   const { data } = PRODUCTS_QUERY;
   //   console.log(data);
@@ -56,7 +60,11 @@ class ProductList extends Component {
               //   return product.category === "tech";
               // });
               return categories[0].products.map((product) => (
-                <ProductItem key={product.id} product={product} />
+                <ProductItem
+                  key={product.id}
+                  product={product}
+                  getProductID={this.productIDHandler}
+                />
               ));
             }}
           </Query>

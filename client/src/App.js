@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // components
 import Header from "./components/Layout/Header";
 import CategoryPage from "./pages/Categories.page";
-import ProductPage from "./pages/Products.page";
+// import ProductPage from "./pages/Products.page";
 import CartPage from "./pages/Cart.page";
 import Cart from "./components/Cart/Cart";
+import ProductDescription from "./components/Products/ProductDescription/ProductDescription";
+// import CategoryContext from "./store/categories-context";
 
 // apollo client setup
 const client = new ApolloClient({
@@ -42,11 +44,17 @@ class App extends Component {
           <Cart onClose={this.hideCartHandler.bind(this)} />
         )}
         <Header onShowCart={this.showCartHandler.bind(this)} />
-        <Routes>
-          <Route path="/" element={<CategoryPage />} />
-          <Route path="/product:id" element={<ProductPage />} />
-          <Route path="/cart" element={<CartPage />} />
-        </Routes>
+        <Switch>
+          <Route path="/" exact>
+            <CategoryPage />
+          </Route>
+          <Route path="/product/:id">
+            <ProductDescription />
+          </Route>
+          <Route path="/cart">
+            <CartPage />
+          </Route>
+        </Switch>
       </ApolloProvider>
     );
   }
