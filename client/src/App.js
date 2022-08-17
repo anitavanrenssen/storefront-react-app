@@ -45,15 +45,11 @@ class App extends Component {
         )}
         <Header onShowCart={this.showCartHandler.bind(this)} />
         <Switch>
-          <Route path="/" exact>
-            <CategoryPage />
-          </Route>
-          <Route path="/product/:id">
-            <ProductDescription />
-          </Route>
-          <Route path="/cart">
-            <CartPage />
-          </Route>
+          <Route exact path="/" component={CategoryPage} />
+
+          <Route exact path="/product/:id" component={ProductDescription} />
+
+          <Route exact path="/cart" component={CartPage} />
         </Switch>
       </ApolloProvider>
     );
