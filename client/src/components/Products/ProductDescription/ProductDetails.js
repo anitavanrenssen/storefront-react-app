@@ -12,22 +12,26 @@ class ProductDetails extends Component {
           <h3 className={classes.nameheading}>{this.props.name}</h3>
         </div>
         <div>
-          <h4 className={classes.attrheading}>
-            {this.props.attributes[0].name}:
-          </h4>
-          <div className={classes.sizebuttons}>
-            {this.props.attributes[0].items.map((item) => {
-              return (
-                <button
-                  key={item.id}
-                  value={item.value}
-                  className={classes.sizebutton}
-                >
-                  {item.displayValue}
-                </button>
-              );
-            })}
-          </div>
+          {this.props.attributes.length > 0 && (
+            <h4 className={classes.attrheading}>
+              {this.props.attributes[0].name}:
+            </h4>
+          )}
+          {this.props.attributes.length > 0 && (
+            <div className={classes.sizebuttons}>
+              {this.props.attributes[0].items.map((item) => {
+                return (
+                  <button
+                    key={item.id}
+                    value={item.displayValue}
+                    className={classes.sizebutton}
+                  >
+                    {item.value}
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
         <div>
           <h4 className={classes.attrheading}>Price:</h4>

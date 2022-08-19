@@ -45,9 +45,9 @@ class HeaderCurrencySwitcher extends Component {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error! ${error.message}</p>;
                 const { currencies } = data;
-                return currencies.map((currency) => {
+                return currencies.map((currency, index) => {
                   return (
-                    <li>
+                    <li key={index}>
                       <span>{currency.symbol}</span>
                       <span>{currency.label}</span>
                     </li>

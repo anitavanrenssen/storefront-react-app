@@ -34,18 +34,10 @@ class ProductList extends Component {
     };
   }
 
-  // productIDHandler(id) {
-  //   this.props.getProductID(id);
-  // }
-
-  // componentDidMount() {
-  //   const { data } = PRODUCTS_QUERY;
-  //   console.log(data);
-  //   // this.setState({ productsArray: [1, 2, 3] });
-  //   // console.log(this.state.productsArray);
-  // }
-
   render() {
+    let categoryFilter = this.props.category;
+    console.log(categoryFilter);
+
     return (
       <div>
         <h1 className={classes.title}>All</h1>
@@ -56,10 +48,10 @@ class ProductList extends Component {
               if (error) return <p>Error! ${error.message}</p>;
               const { categories } = data;
 
-              // const result = categories[0].products.filter((product) => {
-              //   return product.category === "tech";
-              // });
-              return categories[0].products.map((product) => (
+              const filteredCategory = categories.filter((category) => {
+                return category.name === categoryFilter;
+              });
+              return filteredCategory[0].products.map((product) => (
                 <ProductItem
                   key={product.id}
                   product={product}

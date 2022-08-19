@@ -5,11 +5,9 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 // components
 import Header from "./components/Layout/Header";
 import CategoryPage from "./pages/Categories.page";
-// import ProductPage from "./pages/Products.page";
+import ProductPage from "./pages/Products.page";
 import CartPage from "./pages/Cart.page";
 import Cart from "./components/Cart/Cart";
-import ProductDescription from "./components/Products/ProductDescription/ProductDescription";
-// import CategoryContext from "./store/categories-context";
 
 // apollo client setup
 const client = new ApolloClient({
@@ -22,6 +20,7 @@ class App extends Component {
     super();
     this.state = {
       showCart: false,
+      category: "all",
     };
   }
 
@@ -37,17 +36,27 @@ class App extends Component {
     });
   }
 
+  getCategoryHandler(category) {
+    this.setState({ category: category });
+    // console.log(this.state.category);
+  }
+
   render() {
     return (
       <ApolloProvider client={client}>
         {this.state.showCart && (
           <Cart onClose={this.hideCartHandler.bind(this)} />
         )}
-        <Header onShowCart={this.showCartHandler.bind(this)} />
+        <Header
+          onShowCart={this.showCartHandler.bind(this)}
+          getCategory={this.getCategoryHandler.bind(this)}
+        />
         <Switch>
-          <Route exact path="/" component={CategoryPage} />
+          <Route exact path="/">
+            <CategoryPage category={this.state.category} />
+          </Route>
 
-          <Route exact path="/product/:id" component={ProductDescription} />
+          <Route exact path="/product/:id" component={ProductPage} />
 
           <Route exact path="/cart" component={CartPage} />
         </Switch>

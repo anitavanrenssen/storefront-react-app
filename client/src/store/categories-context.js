@@ -1,7 +1,5 @@
 import React from "react";
 
-const CategoryContext = React.createContext({
-  category: "",
-});
+const CategoryContext = React.createContext("");
 
 export default CategoryContext;
