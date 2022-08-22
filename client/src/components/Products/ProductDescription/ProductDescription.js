@@ -60,6 +60,7 @@ class ProductDescription extends Component {
                   attributes={product.attributes}
                   prices={product.prices}
                   description={product.description}
+                  inStock={product.inStock}
                 />
               </div>
             );

@@ -18,21 +18,33 @@ class ProductDetails extends Component {
                 return (
                   <div key={attribute.id} className={classes.attrblock}>
                     <h4 className={classes.attrheading}>{attribute.name}</h4>
-                    <div className={classes.sizebuttons}>
+                    <div
+                      className={
+                        attribute.type === "swatch"
+                          ? classes.swatchbuttons
+                          : classes.sizebuttons
+                      }
+                    >
                       {attribute.items.map((item) => {
                         return (
                           <button
                             key={item.id}
                             value={item.displayValue}
-                            className={classes.sizebutton}
-                            style={{ backgroundColor: item.value }}
+                            className={
+                              attribute.type === "swatch"
+                                ? classes.swatchbutton
+                                : classes.sizebutton
+                            }
+                            style={{
+                              background:
+                                attribute.type === "swatch" && item.value,
+                            }}
                           >
-                            {item.value}
+                            {attribute.type === "swatch" ? "" : item.value}
                           </button>
                         );
                       })}
                     </div>
-                    ;
                   </div>
                 );
               })}
@@ -46,7 +58,7 @@ class ProductDetails extends Component {
             <span>{this.props.prices[0].amount}</span>
           </div>
         </div>
-        <Button>Add to cart</Button>
+        <Button>{!this.props.inStock ? "Out of stock" : "Add to cart"}</Button>
         <div className={classes.description}>{this.props.description}</div>
       </div>
     );
