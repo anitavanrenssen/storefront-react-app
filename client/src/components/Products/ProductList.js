@@ -36,11 +36,10 @@ class ProductList extends Component {
 
   render() {
     let categoryFilter = this.props.category;
-    console.log(categoryFilter);
 
     return (
       <div>
-        <h1 className={classes.title}>All</h1>
+        <h1 className={classes.title}>{categoryFilter}</h1>
         <div className={classes.products}>
           <Query query={PRODUCTS_QUERY}>
             {({ loading, error, data }) => {
@@ -52,11 +51,7 @@ class ProductList extends Component {
                 return category.name === categoryFilter;
               });
               return filteredCategory[0].products.map((product) => (
-                <ProductItem
-                  key={product.id}
-                  product={product}
-                  getProductID={this.productIDHandler}
-                />
+                <ProductItem key={product.id} product={product} />
               ));
             }}
           </Query>

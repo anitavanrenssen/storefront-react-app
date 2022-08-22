@@ -49,7 +49,11 @@ class ProductDescription extends Component {
 
             return (
               <div className={classes.productdescription}>
-                <ProductGallery gallery={product.gallery} name={product.name} />
+                <ProductGallery
+                  gallery={product.gallery}
+                  name={product.name}
+                  inStock={product.inStock}
+                />
                 <ProductDetails
                   brand={product.brand}
                   name={product.name}

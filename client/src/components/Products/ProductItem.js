@@ -24,11 +24,6 @@ class ProductItem extends Component {
     });
   }
 
-  getIDHandler(e) {
-    // this.props.getProductID(e.target.id);
-    // console.log(e.target.id);
-  }
-
   render() {
     return (
       <Card>
@@ -38,7 +33,6 @@ class ProductItem extends Component {
             className={classes.item}
             onMouseEnter={this.mouseEnterHandler.bind(this)}
             onMouseLeave={this.mouseLeaveHandler.bind(this)}
-            onClick={this.getIDHandler.bind(this)}
           >
             <div className={classes.image}>
               <img

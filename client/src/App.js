@@ -38,7 +38,6 @@ class App extends Component {
 
   getCategoryHandler(category) {
     this.setState({ category: category });
-    // console.log(this.state.category);
   }
 
   render() {

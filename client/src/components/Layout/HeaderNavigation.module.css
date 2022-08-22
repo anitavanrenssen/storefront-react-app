@@ -4,13 +4,13 @@
   /* height: 52px; */
 }
 
-.navlinks {
+.navbtns {
   display: flex;
   /* gap: 30px; */
   list-style-type: none;
 }
 
-.navlinks button {
+.navbtn {
   text-transform: uppercase;
   font-weight: 400;
   font-size: 16px;
@@ -20,7 +20,7 @@
   background: #fff;
 }
 
-.navlinks button:first-child {
+.active {
   color: #5ece7b;
   border-bottom: 2px solid #5ece7b;
 }

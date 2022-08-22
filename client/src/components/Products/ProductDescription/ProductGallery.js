@@ -19,7 +19,7 @@ class ProductGallery extends Component {
         <div className={classes.imgContainer}>
           {this.props.gallery.map((item, index) => {
             return (
-              <div key={index}>
+              <div key={index} className={classes.imgGallery}>
                 <img
                   src={item}
                   key={index}
@@ -31,11 +31,10 @@ class ProductGallery extends Component {
           })}
         </div>
         <div className={classes.selectedImgContainer}>
-          <img
-            src={this.state.selectedImg}
-            alt="Selected"
-            className={classes.selected}
-          />
+          <img src={this.state.selectedImg} alt="Selected" />
+          {!this.props.inStock && (
+            <div className={classes.outofstock}>Out of Stock</div>
+          )}
         </div>
       </div>
     );
