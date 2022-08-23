@@ -16,16 +16,16 @@ class HeaderNavigation extends Component {
   constructor() {
     super();
     this.state = {
-      activeLink: null,
+      activeLink: 0,
     };
   }
 
   changeCategoryHandler(e) {
     this.props.getCategory(e.target.innerHTML);
-    console.log(e.target.getAttribute("index"));
-    this.setState((curState) => {
-      return { activeLink: e.target.getAttribute("index") };
-    });
+
+    this.setState({ activeLink: parseInt(e.target.getAttribute("index")) });
+
+    // console.log(this.state.activeLink);
   }
 
   render() {
@@ -44,7 +44,7 @@ class HeaderNavigation extends Component {
                     key={index}
                     index={index}
                     className={`${classes.navbtn} ${
-                      this.state.isLinkActive && classes.active
+                      index === this.state.activeLink && classes.active
                     }`}
                     onClick={this.changeCategoryHandler.bind(this)}
                   >

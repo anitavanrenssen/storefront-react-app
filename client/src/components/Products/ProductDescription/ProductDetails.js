@@ -17,7 +17,7 @@ class ProductDetails extends Component {
               {this.props.attributes.map((attribute) => {
                 return (
                   <div key={attribute.id} className={classes.attrblock}>
-                    <h4 className={classes.attrheading}>{attribute.name}</h4>
+                    <h4 className={classes.attrheading}>{attribute.name}:</h4>
                     <div
                       className={
                         attribute.type === "swatch"
@@ -38,6 +38,10 @@ class ProductDetails extends Component {
                             style={{
                               background:
                                 attribute.type === "swatch" && item.value,
+                              border:
+                                attribute.type === "swatch" &&
+                                item.value === "#FFFFFF" &&
+                                "1px solid #1D1F22",
                             }}
                           >
                             {attribute.type === "swatch" ? "" : item.value}

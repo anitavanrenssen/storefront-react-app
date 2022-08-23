@@ -36,12 +36,13 @@
   width: 32px;
   height: 32px;
   border: none;
+  padding: 2px;
   /* margin-right: 8px; */
 }
 
 .swatchbutton:hover {
   cursor: pointer;
-  border: 1px solid #5ece7b;
+  border: 1px solid #5ece7b !important;
 }
 
 .sizebutton {

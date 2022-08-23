@@ -27,7 +27,10 @@ class ProductItem extends Component {
   render() {
     return (
       <Card>
-        <Link to={`/product/${this.props.product.id}`}>
+        <Link
+          to={`/product/${this.props.product.id}`}
+          className={classes.productlink}
+        >
           <div
             id={this.props.product.id}
             className={classes.item}

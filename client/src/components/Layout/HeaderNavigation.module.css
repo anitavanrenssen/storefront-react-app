@@ -15,12 +15,24 @@
   font-weight: 400;
   font-size: 16px;
   padding: 0 16px 32px 16px;
-  cursor: pointer;
   border: none;
   background: #fff;
+  text-decoration: none;
+  color: #1d1f22;
 }
+.navbtn:hover {
+  cursor: pointer;
+  color: #5ece7b;
+}
+
+/* .navbtn:active {
+  color: #5ece7b;
+  border-bottom: 2px solid #5ece7b;
+  font-weight: 600;
+} */
 
 .active {
   color: #5ece7b;
   border-bottom: 2px solid #5ece7b;
+  font-weight: 600;
 }
