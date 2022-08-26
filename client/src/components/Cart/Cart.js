@@ -4,12 +4,15 @@ import Modal from "../UI/Modal";
 import CartContext from "../../store/cart-context";
 // import classes from "./Cart.module.css";
 
+// const SHOPPING_CART_KEY = "cart-storage-key";
+
 class Cart extends Component {
   static contextType = CartContext;
 
-  componentDidMount() {
-    // const { cart } = this.context;
-  }
+  // componentDidMount() {
+  //   const cart = JSON.parse(localStorage.getItem(SHOPPING_CART_KEY));
+  //   return cart;
+  // }
 
   render() {
     const { cart } = this.context;

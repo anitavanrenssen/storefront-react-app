@@ -38,6 +38,12 @@ export class CartProvider extends Component {
     });
   }
 
+  componentDidMount() {
+    this.setState({
+      cart: JSON.parse(localStorage.getItem(SHOPPING_CART_KEY)),
+    });
+  }
+
   render() {
     const cartContext = {
       cart: this.state.cart,
