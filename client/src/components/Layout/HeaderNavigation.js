@@ -22,10 +22,7 @@ class HeaderNavigation extends Component {
 
   changeCategoryHandler(e) {
     this.props.getCategory(e.target.innerHTML);
-
-    this.setState({ activeLink: parseInt(e.target.getAttribute("index")) });
-
-    // console.log(this.state.activeLink);
+    this.setState({ activeLink: +e.target.getAttribute("index") });
   }
 
   render() {

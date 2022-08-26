@@ -1,69 +1,61 @@
 import React, { Component } from "react";
 import Button from "../../UI/Button";
+import ProductAttributes from "./ProductAttributes";
+import CartContext from "../../../store/cart-context";
 
 import classes from "./ProductDetails.module.css";
 
 class ProductDetails extends Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedAttributes: [],
+    };
+  }
+
+  static contextType = CartContext;
+
+  addToCartHandler(selectedAttributes) {
+    this.setState({
+      selectedAttributes: selectedAttributes.selectedAttributes,
+    });
+    // console.log(this.state.selectedAttributes);
+  }
+
+  addItemHandler(product) {
+    this.context.addItem({
+      id: product.id,
+      itemName: product.name,
+      gallery: product.gallery,
+      selectedAttributes: this.state.selectedAttributes,
+      prices: product.prices,
+      brand: product.brand,
+    });
+  }
+
   render() {
+    const { product } = this.props;
     return (
       <div>
         <div>
-          <h2 className={classes.brandheading}>{this.props.brand}</h2>
-          <h3 className={classes.nameheading}>{this.props.name}</h3>
+          <h2 className={classes.brandheading}>{product.brand}</h2>
+          <h3 className={classes.nameheading}>{product.name}</h3>
         </div>
-        <div>
-          {this.props.attributes.length > 0 && (
-            <div className={classes.attr}>
-              {this.props.attributes.map((attribute) => {
-                return (
-                  <div key={attribute.id} className={classes.attrblock}>
-                    <h4 className={classes.attrheading}>{attribute.name}:</h4>
-                    <div
-                      className={
-                        attribute.type === "swatch"
-                          ? classes.swatchbuttons
-                          : classes.sizebuttons
-                      }
-                    >
-                      {attribute.items.map((item) => {
-                        return (
-                          <button
-                            key={item.id}
-                            value={item.displayValue}
-                            className={
-                              attribute.type === "swatch"
-                                ? classes.swatchbutton
-                                : classes.sizebutton
-                            }
-                            style={{
-                              background:
-                                attribute.type === "swatch" && item.value,
-                              border:
-                                attribute.type === "swatch" &&
-                                item.value === "#FFFFFF" &&
-                                "1px solid #1D1F22",
-                            }}
-                          >
-                            {attribute.type === "swatch" ? "" : item.value}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
+        <ProductAttributes
+          product={product}
+          onAddToCart={this.addToCartHandler.bind(this)}
+        />
         <div>
           <h4 className={classes.attrheading}>Price:</h4>
           <div className={classes.price}>
-            <span>{this.props.prices[0].currency.symbol}</span>
-            <span>{this.props.prices[0].amount}</span>
+            <span>{product.prices[0].currency.symbol}</span>
+            <span>{product.prices[0].amount}</span>
           </div>
         </div>
-        <Button>{!this.props.inStock ? "Out of stock" : "Add to cart"}</Button>
-        <div className={classes.description}>{this.props.description}</div>
+        <Button onClick={this.addItemHandler.bind(this, product)}>
+          {!product.inStock ? "Out of stock" : "Add to cart"}
+        </Button>
+        <div className={classes.description}>{product.description}</div>
       </div>
     );
   }

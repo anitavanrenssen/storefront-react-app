@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
+import { CartProvider } from "./store/cart-context";
+
 // components
 import Header from "./components/Layout/Header";
 import CategoryPage from "./pages/Categories.page";
@@ -43,22 +45,24 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        {this.state.showCart && (
-          <Cart onClose={this.hideCartHandler.bind(this)} />
-        )}
-        <Header
-          onShowCart={this.showCartHandler.bind(this)}
-          getCategory={this.getCategoryHandler.bind(this)}
-        />
-        <Switch>
-          <Route exact path="/">
-            <CategoryPage category={this.state.category} />
-          </Route>
+        <CartProvider>
+          {this.state.showCart && (
+            <Cart onClose={this.hideCartHandler.bind(this)} />
+          )}
+          <Header
+            onShowCart={this.showCartHandler.bind(this)}
+            getCategory={this.getCategoryHandler.bind(this)}
+          />
+          <Switch>
+            <Route exact path="/">
+              <CategoryPage category={this.state.category} />
+            </Route>
 
-          <Route exact path="/product/:id" component={ProductPage} />
+            <Route exact path="/product/:id" component={ProductPage} />
 
-          <Route exact path="/cart" component={CartPage} />
-        </Switch>
+            <Route exact path="/cart" component={CartPage} />
+          </Switch>
+        </CartProvider>
       </ApolloProvider>
     );
   }

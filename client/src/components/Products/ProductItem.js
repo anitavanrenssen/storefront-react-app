@@ -42,7 +42,7 @@ class ProductItem extends Component {
                 src={this.props.product.gallery[0]}
                 alt={this.props.product.name}
               />
-              {this.state.showCartButton && <ProductCartButton />}
+              {this.state.showCartButton && <ProductCartButton onAddToCart={this.addToCartHandler}/>}
               {!this.props.product.inStock && (
                 <div className={classes.outofstock}>Out of Stock</div>
               )}

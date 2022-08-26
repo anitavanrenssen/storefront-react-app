@@ -10,6 +10,7 @@ import ProductDetails from "./ProductDetails";
 const PRODUCT_QUERY = gql`
   query Product($id: String!) {
     product(id: $id) {
+      id
       name
       inStock
       gallery
@@ -54,14 +55,7 @@ class ProductDescription extends Component {
                   name={product.name}
                   inStock={product.inStock}
                 />
-                <ProductDetails
-                  brand={product.brand}
-                  name={product.name}
-                  attributes={product.attributes}
-                  prices={product.prices}
-                  description={product.description}
-                  inStock={product.inStock}
-                />
+                <ProductDetails product={product} />
               </div>
             );
           }}
