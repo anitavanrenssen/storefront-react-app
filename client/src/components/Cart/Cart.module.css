@@ -1,0 +1,17 @@
+.containercart {
+  margin: 160px 100px;
+}
+
+.heading {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  text-transform: uppercase;
+  color: #1d1f22;
+  margin-bottom: 55px;
+}
+
+/* .containercartlist {
+} */

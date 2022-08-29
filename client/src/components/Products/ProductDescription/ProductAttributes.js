@@ -46,7 +46,7 @@ class ProductAttributes extends Component {
     const { product } = this.props;
     return (
       <div>
-        {product.attributes.length > 0 && (
+        {
           <div className={classes.attr}>
             {product.attributes.map((attribute) => {
               return (
@@ -100,7 +100,7 @@ class ProductAttributes extends Component {
               );
             })}
           </div>
-        )}
+        }
       </div>
     );
   }

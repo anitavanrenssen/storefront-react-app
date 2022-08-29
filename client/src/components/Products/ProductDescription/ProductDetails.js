@@ -28,6 +28,7 @@ class ProductDetails extends Component {
       itemName: product.name,
       gallery: product.gallery,
       selectedAttributes: this.state.selectedAttributes,
+      attributes: product.attributes,
       prices: product.prices,
       brand: product.brand,
     });
@@ -41,10 +42,12 @@ class ProductDetails extends Component {
           <h2 className={classes.brandheading}>{product.brand}</h2>
           <h3 className={classes.nameheading}>{product.name}</h3>
         </div>
-        <ProductAttributes
-          product={product}
-          onAddToCart={this.addToCartHandler.bind(this)}
-        />
+        {product.attributes.length > 0 && (
+          <ProductAttributes
+            product={product}
+            onAddToCart={this.addToCartHandler.bind(this)}
+          />
+        )}
         <div>
           <h4 className={classes.attrheading}>Price:</h4>
           <div className={classes.price}>

@@ -9,7 +9,7 @@ import Header from "./components/Layout/Header";
 import CategoryPage from "./pages/Categories.page";
 import ProductPage from "./pages/Products.page";
 import CartPage from "./pages/Cart.page";
-import Cart from "./components/Cart/Cart";
+import CartModal from "./components/Cart/CartModal";
 
 // apollo client setup
 const client = new ApolloClient({
@@ -47,7 +47,7 @@ class App extends Component {
       <ApolloProvider client={client}>
         <CartProvider>
           {this.state.showCart && (
-            <Cart onClose={this.hideCartHandler.bind(this)} />
+            <CartModal onClose={this.hideCartHandler.bind(this)} />
           )}
           <Header
             onShowCart={this.showCartHandler.bind(this)}
