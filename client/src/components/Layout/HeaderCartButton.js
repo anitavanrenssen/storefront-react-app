@@ -12,7 +12,9 @@ class HeaderCartButton extends Component {
         <button className={classes.button} onClick={this.props.onClick}>
           <CartIcon />
           <div className={classes.badge}>
-            <span className={classes.badgenumber}>{cart.length}</span>
+            <span className={classes.badgenumber}>
+              {cart && cart.length > 0 ? cart.length : 0}
+            </span>
           </div>
         </button>
       </div>

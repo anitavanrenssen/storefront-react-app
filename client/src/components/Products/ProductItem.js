@@ -42,14 +42,18 @@ class ProductItem extends Component {
                 src={this.props.product.gallery[0]}
                 alt={this.props.product.name}
               />
-              {this.state.showCartButton && <ProductCartButton onAddToCart={this.addToCartHandler}/>}
+              {this.state.showCartButton && (
+                <ProductCartButton onAddToCart={this.addToCartHandler} />
+              )}
               {!this.props.product.inStock && (
                 <div className={classes.outofstock}>Out of Stock</div>
               )}
             </div>
 
             <div className={classes.content}>
-              <p className={classes.title}>{this.props.product.name}</p>
+              <p className={classes.title}>
+                {this.props.product.brand} {this.props.product.name}
+              </p>
               <p className={classes.price}>
                 {this.props.product.prices[0].currency.symbol}
                 {this.props.product.prices[0].amount}

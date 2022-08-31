@@ -21,6 +21,7 @@ const PRODUCTS_QUERY = gql`
           }
           amount
         }
+        brand
       }
     }
   }

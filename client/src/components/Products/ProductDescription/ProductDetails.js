@@ -31,6 +31,7 @@ class ProductDetails extends Component {
       attributes: product.attributes,
       prices: product.prices,
       brand: product.brand,
+      qty: 1
     });
   }
 
