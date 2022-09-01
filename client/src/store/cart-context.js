@@ -31,7 +31,7 @@ export class CartProvider extends Component {
     let updatedItems;
 
     if (existingCartItem) {
-      // console.log(existingCartItem);
+      console.log(existingCartItem.selectedAttributes);
       const updatedItem = {
         ...existingCartItem,
         qty: existingCartItem.qty + item.qty,

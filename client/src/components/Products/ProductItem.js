@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import Card from "../UI/Card";
 import ProductCartButton from "./ProductCartButton";
 import classes from "./ProductItem.module.css";
+import CartContext from "../../store/cart-context";
 
 class ProductItem extends Component {
+  static contextType = CartContext;
+
   constructor() {
     super();
     this.state = {
@@ -21,6 +24,17 @@ class ProductItem extends Component {
   mouseLeaveHandler() {
     this.setState((curState) => {
       return { showCartButton: false };
+    });
+  }
+
+  addToCartHandler(product) {
+    this.context.addItem({
+      id: product.id,
+      itemName: product.name,
+      gallery: product.gallery,
+      prices: product.prices,
+      brand: product.brand,
+      qty: 1,
     });
   }
 
@@ -42,9 +56,15 @@ class ProductItem extends Component {
                 src={this.props.product.gallery[0]}
                 alt={this.props.product.name}
               />
-              {this.state.showCartButton && (
-                <ProductCartButton onAddToCart={this.addToCartHandler} />
-              )}
+              {this.props.product.attributes.length === 0 &&
+                this.state.showCartButton && (
+                  <ProductCartButton
+                    onClick={this.addToCartHandler.bind(
+                      this,
+                      this.props.product
+                    )}
+                  />
+                )}
               {!this.props.product.inStock && (
                 <div className={classes.outofstock}>Out of Stock</div>
               )}

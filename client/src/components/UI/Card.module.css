@@ -9,6 +9,7 @@
   height: 444px;
   left: calc(50% - 386px / 2 - 427px);
   bottom: 738px;
+  z-index: 1;
 }
 
 .card:hover {

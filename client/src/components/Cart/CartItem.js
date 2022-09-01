@@ -20,6 +20,7 @@ class CartItem extends Component {
 
   render() {
     const { product } = this.props;
+    console.log(this.props.product.selectedAttributes);
     return (
       <div className={classes.cartitem}>
         <div className={classes.itemdetailsamount}>
@@ -30,12 +31,13 @@ class CartItem extends Component {
               <span>{product.prices[0].currency.symbol}</span>
               <span>{product.prices[0].amount}</span>
             </div>
-            {product.attributes.length > 0 && (
-              <ProductAttributes
-                product={product}
-                onAddToCart={this.addToCartHandler.bind(this)}
-              />
-            )}
+            {!product.attributes ||
+              (product.attributes.length > 0 && (
+                <ProductAttributes
+                  product={product}
+                  onAddToCart={this.addToCartHandler.bind(this)}
+                />
+              ))}
           </div>
         </div>
         <div className={classes.amountgallery}>

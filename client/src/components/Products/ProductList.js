@@ -15,6 +15,16 @@ const PRODUCTS_QUERY = gql`
         name
         gallery
         category
+        attributes {
+          id
+          name
+          type
+          items {
+            displayValue
+            value
+            id
+          }
+        }
         prices {
           currency {
             symbol
