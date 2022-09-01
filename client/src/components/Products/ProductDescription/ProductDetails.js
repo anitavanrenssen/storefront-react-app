@@ -19,19 +19,18 @@ class ProductDetails extends Component {
     this.setState({
       selectedAttributes: selectedAttributes.selectedAttributes,
     });
-    // console.log(this.state.selectedAttributes);
   }
 
   addItemHandler(product) {
     this.context.addItem({
-      id: product.id,
+      id: product.id + JSON.stringify(this.state.selectedAttributes),
       itemName: product.name,
       gallery: product.gallery,
       selectedAttributes: this.state.selectedAttributes,
       attributes: product.attributes,
       prices: product.prices,
       brand: product.brand,
-      qty: 1
+      qty: 1,
     });
   }
 

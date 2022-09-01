@@ -9,6 +9,15 @@ class Cart extends Component {
 
   render() {
     const { cart, totalAmount } = this.context;
+
+    const amountTotal = totalAmount.toFixed(2);
+
+    const amountTax = (totalAmount * 0.21).toFixed(2);
+
+    const numberOfCartItems = cart.reduce((curNumber, item) => {
+      return curNumber + item.qty;
+    }, 0);
+
     return (
       <div className={classes.containercart}>
         <h1 className={classes.heading}>Cart</h1>
@@ -16,9 +25,9 @@ class Cart extends Component {
           <CartList cart={cart} />
         </div>
         <div className={classes.totalcontainer}>
-          <p>Tax 21%: </p>
-          <p>Quantity: {cart && cart.length > 0 ? cart.length : 0}</p>
-          <p>Total: {totalAmount}</p>
+          <p>Tax 21%: {amountTax}</p>
+          <p>Quantity: {cart ? numberOfCartItems : 0}</p>
+          <p>Total: {amountTotal}</p>
         </div>
         <Button>Order</Button>
       </div>

@@ -19,6 +19,10 @@ export class CartProvider extends Component {
   }
 
   addToCartHandler(item) {
+    console.log(item.id);
+    const updatedTotalAmount =
+      this.state.totalAmount + item.prices[0].amount * item.qty;
+
     const existingCartItemIndex = this.state.cart.findIndex(
       (cartItem) => cartItem.id === item.id
     );
@@ -27,6 +31,7 @@ export class CartProvider extends Component {
     let updatedItems;
 
     if (existingCartItem) {
+      // console.log(existingCartItem);
       const updatedItem = {
         ...existingCartItem,
         qty: existingCartItem.qty + item.qty,
@@ -36,38 +41,43 @@ export class CartProvider extends Component {
     } else {
       updatedItems = this.state.cart.concat(item);
     }
-
-    this.setState({ cart: updatedItems });
-    localStorage.setItem(SHOPPING_CART_KEY, JSON.stringify());
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem(SHOPPING_CART_KEY, JSON.stringify(this.state.cart));
+    this.setState({ cart: updatedItems, totalAmount: updatedTotalAmount });
   }
 
   removeFromCartHandler(id) {
-    // const existingCartItemIndex = this.state.cart.findIndex(
-    //   (item) => item.id === id
-    // );
-    // const existingItem = this.state.cart[existingCartItemIndex];
-    // // const updatedTotalAmount = this.state.totalAmount - existingItem.price;
-    // let updatedItems;
-    // if (existingItem.amount === 1) {
-    //   updatedItems = this.state.cart.filter((item) => item.id !== id);
-    // } else {
-    //   const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
-    //   updatedItems = [...this.state.cart];
-    //   updatedItems[existingCartItemIndex] = updatedItem;
-    // }
-    // return {
-    //   cart: updatedItems,
-    // };
+    const existingCartItemIndex = this.state.cart.findIndex(
+      (item) => item.id === id
+    );
+    const existingItem = this.state.cart[existingCartItemIndex];
+
+    const updatedTotalAmount =
+      this.state.totalAmount - existingItem.prices[0].amount;
+
+    let updatedItems;
+    if (existingItem.qty === 1) {
+      updatedItems = this.state.cart.filter((item) => item.id !== id);
+    } else {
+      const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
+      updatedItems = [...this.state.cart];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    }
+    this.setState({ cart: updatedItems, totalAmount: updatedTotalAmount });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(SHOPPING_CART_KEY, JSON.stringify(this.state));
   }
 
   componentDidMount() {
-    this.setState({
-      cart: JSON.parse(localStorage.getItem(SHOPPING_CART_KEY)),
-    });
+    if (localStorage.getItem(SHOPPING_CART_KEY)) {
+      let data = JSON.parse(localStorage.getItem(SHOPPING_CART_KEY));
+      let cart = data.cart;
+      let totalAmount = data.totalAmount;
+      this.setState({
+        cart: cart,
+        totalAmount: totalAmount,
+      });
+    }
   }
 
   render() {

@@ -9,11 +9,15 @@ class CartModal extends Component {
   static contextType = CartContext;
 
   render() {
-    const { cart, totalAmount } = this.context;
+    const { cart } = this.context;
+
+    const numberOfCartItems = cart.reduce((curNumber, item) => {
+      return curNumber + item.qty;
+    }, 0);
 
     return (
       <Modal onClose={this.props.onClose}>
-        <h3>My Bag, {totalAmount} items</h3>
+        <h3>My Bag, {numberOfCartItems} items</h3>
         <div className={classes.cartlist}>
           <CartList cart={cart} />
         </div>
