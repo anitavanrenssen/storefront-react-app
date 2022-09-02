@@ -20,7 +20,7 @@ class CartItem extends Component {
 
   render() {
     const { product } = this.props;
-    console.log(this.props.product.selectedAttributes);
+
     return (
       <div className={classes.cartitem}>
         <div className={classes.itemdetailsamount}>

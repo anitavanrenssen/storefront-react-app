@@ -29,7 +29,7 @@ class ProductItem extends Component {
 
   addToCartHandler(product) {
     this.context.addItem({
-      id: product.id,
+      id: product.id + "[]",
       itemName: product.name,
       gallery: product.gallery,
       prices: product.prices,
@@ -41,46 +41,49 @@ class ProductItem extends Component {
   render() {
     return (
       <Card>
-        <Link
-          to={`/product/${this.props.product.id}`}
-          className={classes.productlink}
+        <div
+          className={classes.productcard}
+          onMouseEnter={this.mouseEnterHandler.bind(this)}
+          onMouseLeave={this.mouseLeaveHandler.bind(this)}
         >
-          <div
-            id={this.props.product.id}
-            className={classes.item}
-            onMouseEnter={this.mouseEnterHandler.bind(this)}
-            onMouseLeave={this.mouseLeaveHandler.bind(this)}
+          <Link
+            to={`/product/${this.props.product.id}`}
+            className={classes.productlink}
           >
-            <div className={classes.image}>
-              <img
-                src={this.props.product.gallery[0]}
-                alt={this.props.product.name}
-              />
-              {this.props.product.attributes.length === 0 &&
-                this.state.showCartButton && (
-                  <ProductCartButton
-                    onClick={this.addToCartHandler.bind(
-                      this,
-                      this.props.product
-                    )}
-                  />
-                )}
-              {!this.props.product.inStock && (
-                <div className={classes.outofstock}>Out of Stock</div>
-              )}
-            </div>
+            <div id={this.props.product.id} className={classes.item}>
+              <div className={classes.image}>
+                <img
+                  src={this.props.product.gallery[0]}
+                  alt={this.props.product.name}
+                />
 
-            <div className={classes.content}>
-              <p className={classes.title}>
-                {this.props.product.brand} {this.props.product.name}
-              </p>
-              <p className={classes.price}>
-                {this.props.product.prices[0].currency.symbol}
-                {this.props.product.prices[0].amount}
-              </p>
+                {!this.props.product.inStock && (
+                  <div className={classes.outofstock}>Out of Stock</div>
+                )}
+              </div>
+
+              <div className={classes.content}>
+                <p className={classes.title}>
+                  {this.props.product.brand} {this.props.product.name}
+                </p>
+                <p className={classes.price}>
+                  {this.props.product.prices[0].currency.symbol}
+                  {this.props.product.prices[0].amount}
+                </p>
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+          {this.props.product.attributes.length === 0 &&
+            this.state.showCartButton && (
+              <ProductCartButton
+                onClick={this.addToCartHandler.bind(
+                  this,
+
+                  this.props.product
+                )}
+              />
+            )}
+        </div>
       </Card>
     );
   }

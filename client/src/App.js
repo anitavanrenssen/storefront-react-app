@@ -10,6 +10,7 @@ import CategoryPage from "./pages/Categories.page";
 import ProductPage from "./pages/Products.page";
 import CartPage from "./pages/Cart.page";
 import CartModal from "./components/Cart/CartModal";
+import HeaderCurrencySwitcher from "./components/Layout/HeaderCurrencySwitcher";
 
 // apollo client setup
 const client = new ApolloClient({
@@ -22,6 +23,7 @@ class App extends Component {
     super();
     this.state = {
       showCart: false,
+      showCurrencySwitcher: false,
       category: "all",
     };
   }
@@ -38,6 +40,18 @@ class App extends Component {
     });
   }
 
+  showCurrencySwitcherHandler() {
+    this.setState((curState) => {
+      return { showCurrencySwitcher: !curState.showCurrencySwitcher };
+    });
+  }
+
+  hideCurrencySwitcherHandler() {
+    this.setState((curState) => {
+      return { showCurrencySwitcher: false };
+    });
+  }
+
   getCategoryHandler(category) {
     this.setState({ category: category });
   }
@@ -49,8 +63,15 @@ class App extends Component {
           {this.state.showCart && (
             <CartModal onClose={this.hideCartHandler.bind(this)} />
           )}
+          {this.state.showCurrencySwitcher && (
+            <HeaderCurrencySwitcher
+              show={this.state.showCurrencySwitcher}
+              onClickOutside={this.hideCurrencySwitcherHandler.bind(this)}
+            />
+          )}
           <Header
             onShowCart={this.showCartHandler.bind(this)}
+            onShowCurrencySwitcher={this.showCurrencySwitcherHandler.bind(this)}
             getCategory={this.getCategoryHandler.bind(this)}
           />
           <Switch>

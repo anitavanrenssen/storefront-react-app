@@ -19,7 +19,6 @@ export class CartProvider extends Component {
   }
 
   addToCartHandler(item) {
-    console.log(item.id);
     const updatedTotalAmount =
       this.state.totalAmount + item.prices[0].amount * item.qty;
 
@@ -31,7 +30,6 @@ export class CartProvider extends Component {
     let updatedItems;
 
     if (existingCartItem) {
-      console.log(existingCartItem.selectedAttributes);
       const updatedItem = {
         ...existingCartItem,
         qty: existingCartItem.qty + item.qty,

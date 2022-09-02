@@ -1,35 +1,18 @@
-.button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: none;
-  background: #fff;
-  cursor: pointer;
-  padding: 8px 0 8px 0;
-}
-
-.symbol {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 160%;
-}
-
 .dropdownlist {
   list-style-type: none;
-  position: absolute;
+  position: fixed;
   width: 114px;
   right: 9.5%;
   top: 65px;
   filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
   background: #fff;
   text-align: center;
+  z-index: 40;
 }
 
 .dropdownlist li {
   width: 114px;
   height: 45px;
-
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
