@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { gql } from "graphql-tag";
 import { Query } from "@apollo/client/react/components";
+import CurrencyContext from "../../store/currency-context";
 
 import classes from "./HeaderCurrencySwitcher.module.css";
 
@@ -14,6 +15,8 @@ const CURRENCIES_QUERY = gql`
 `;
 
 class HeaderCurrencySwitcher extends Component {
+  static contextType = CurrencyContext;
+
   constructor(props) {
     super(props);
     this.ref = React.createRef();
@@ -34,8 +37,15 @@ class HeaderCurrencySwitcher extends Component {
     document.removeEventListener("click", this.clickOutsideHandler, true);
   }
 
+  changeCurrencyHandler(e) {
+    this.context.changeCurrency(e.target.id);
+    console.log(e.target.id);
+  }
+
   render() {
     if (!this.props.show) return null;
+
+    // const { currency } = this.context;
 
     return (
       <div ref={this.ref}>
@@ -47,7 +57,14 @@ class HeaderCurrencySwitcher extends Component {
               const { currencies } = data;
               return currencies.map((currency, index) => {
                 return (
-                  <li key={index}>
+                  <li
+                    className={`${classes.listitem} ${
+                      this.context.currency === currency.label && classes.active
+                    }`}
+                    key={index}
+                    id={currency.label}
+                    onClick={this.changeCurrencyHandler.bind(this)}
+                  >
                     <span>{currency.symbol}</span>
                     <span>{currency.label}</span>
                   </li>

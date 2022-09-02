@@ -16,7 +16,7 @@ class Header extends Component {
       <header className={classes.header}>
         <HeaderNavigation getCategory={this.getCategoryHandler.bind(this)} />
         <Logo />
-        <HeaderActions onShowCart={this.props.onShowCart}  onShowCurrencySwitcher={this.props.onShowCurrencySwitcher}/>
+        <HeaderActions onShowCart={this.props.onShowCart}  onShowCurrencySwitcher={this.props.onShowCurrencySwitcher} onShow={this.props.show}/>
       </header>
     );
   }

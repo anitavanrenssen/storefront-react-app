@@ -7,7 +7,7 @@ class HeaderCurrencySwitcherButton extends Component {
     return (
       <button className={classes.button} onClick={this.props.onClick}>
         <span className={classes.symbol}>$</span>
-        <DropdownArrow />
+        <DropdownArrow onDropdown={this.props.onShow} />
       </button>
     );
   }

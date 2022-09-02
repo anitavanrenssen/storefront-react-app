@@ -25,7 +25,15 @@
   gap: 10px;
 }
 
-.dropdownlist li:hover {
+.listitem:hover {
   cursor: pointer;
+  background: #eeeeee;
+}
+
+.listitem span {
+  pointer-events: none;
+}
+
+.active {
   background: #eeeeee;
 }
