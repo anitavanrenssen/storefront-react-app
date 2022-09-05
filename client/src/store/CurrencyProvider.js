@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-
-const CurrencyContext = React.createContext({
-  currency: "",
-  changeCurrency: () => {},
-});
+import { CurrencyContext } from "./contexts";
 
 const CURRENCY_KEY = "currency-storage-key";
 
-export class CurrencyProvider extends Component {
+class CurrencyProvider extends Component {
   constructor() {
     super();
     this.state = {
@@ -17,7 +13,6 @@ export class CurrencyProvider extends Component {
 
   changeCurrencyHandler(id) {
     this.setState({ currency: id });
-    console.log(this.state.currency);
   }
 
   componentDidUpdate() {
@@ -48,4 +43,4 @@ export class CurrencyProvider extends Component {
   }
 }
 
-export default CurrencyContext;
+export default CurrencyProvider;

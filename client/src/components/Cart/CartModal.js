@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../UI/Modal";
 import CartList from "./CartList";
 import classes from "./CartModal.module.css";
-import CartContext from "../../store/cart-context";
+import { CartContext } from "../../store/contexts";
+import { CurrencyContext } from "../../store/contexts";
+import CartTotal from "./CartTotal";
 
 class CartModal extends Component {
   static contextType = CartContext;
@@ -17,9 +19,27 @@ class CartModal extends Component {
 
     return (
       <Modal onClose={this.props.onClose}>
-        <h3>My Bag, {numberOfCartItems} items</h3>
+        <h3>
+          My Bag, {numberOfCartItems}{" "}
+          {numberOfCartItems === 1 ? "item" : "items"}
+        </h3>
         <div className={classes.cartlist}>
           <CartList cart={cart} />
+        </div>
+        <div>
+          <CartContext.Consumer>
+            {(cart) => (
+              <CurrencyContext.Consumer>
+                {(currency) => (
+                  <CartTotal
+                    cart={cart}
+                    currency={currency}
+                    quantity={numberOfCartItems}
+                  />
+                )}
+              </CurrencyContext.Consumer>
+            )}
+          </CartContext.Consumer>
         </div>
 
         <button>

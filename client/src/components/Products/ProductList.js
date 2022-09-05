@@ -4,6 +4,8 @@ import { Query } from "@apollo/client/react/components";
 
 import ProductItem from "./ProductItem";
 import classes from "./ProductList.module.css";
+import { CurrencyContext } from "../../store/contexts";
+import { CartContext } from "../../store/contexts";
 
 const PRODUCTS_QUERY = gql`
   {
@@ -27,6 +29,7 @@ const PRODUCTS_QUERY = gql`
         }
         prices {
           currency {
+            label
             symbol
           }
           amount
@@ -38,34 +41,44 @@ const PRODUCTS_QUERY = gql`
 `;
 
 class ProductList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      productsArray: [],
-    };
-  }
+  // static contextType = CurrencyContext;
 
   render() {
     let categoryFilter = this.props.category;
+
+    // const { currency } = this.context;
 
     return (
       <div>
         <h1 className={classes.title}>{categoryFilter}</h1>
         <div className={classes.products}>
-          <Query query={PRODUCTS_QUERY}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error! ${error.message}</p>;
-              const { categories } = data;
+          <CartContext.Consumer>
+            {(cart) => (
+              <CurrencyContext.Consumer>
+                {(currency) => (
+                  <Query query={PRODUCTS_QUERY}>
+                    {({ loading, error, data }) => {
+                      if (loading) return <p>Loading...</p>;
+                      if (error) return <p>Error! ${error.message}</p>;
+                      const { categories } = data;
 
-              const filteredCategory = categories.filter((category) => {
-                return category.name === categoryFilter;
-              });
-              return filteredCategory[0].products.map((product) => (
-                <ProductItem key={product.id} product={product} />
-              ));
-            }}
-          </Query>
+                      const filteredCategory = categories.filter((category) => {
+                        return category.name === categoryFilter;
+                      });
+                      return filteredCategory[0].products.map((product) => (
+                        <ProductItem
+                          key={product.id}
+                          product={product}
+                          cart={cart}
+                          currency={currency}
+                        />
+                      ));
+                    }}
+                  </Query>
+                )}
+              </CurrencyContext.Consumer>
+            )}
+          </CartContext.Consumer>
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "../../UI/Button";
 import ProductAttributes from "./ProductAttributes";
-import CartContext from "../../../store/cart-context";
+import { CartContext } from "../../../store/contexts";
 
 import classes from "./ProductDetails.module.css";
 
@@ -36,6 +36,11 @@ class ProductDetails extends Component {
 
   render() {
     const { product } = this.props;
+
+    const filteredCurrency = product.prices.filter((currency) => {
+      return currency.currency.label === this.props.currency;
+    });
+
     return (
       <div>
         <div>
@@ -51,8 +56,8 @@ class ProductDetails extends Component {
         <div>
           <h4 className={classes.attrheading}>Price:</h4>
           <div className={classes.price}>
-            <span>{product.prices[0].currency.symbol}</span>
-            <span>{product.prices[0].amount}</span>
+            {filteredCurrency[0].currency.symbol}
+            {filteredCurrency[0].amount}
           </div>
         </div>
         <Button onClick={this.addItemHandler.bind(this, product)}>

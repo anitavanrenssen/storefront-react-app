@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-import { CartProvider } from "./store/cart-context";
-import { CurrencyProvider } from "./store/currency-context";
+import CartProvider from "./store/CartProvider";
+import CurrencyProvider from "./store/CurrencyProvider";
 
 // components
 import Header from "./components/Layout/Header";

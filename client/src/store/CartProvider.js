@@ -1,15 +1,9 @@
 import React, { Component } from "react";
-
-const CartContext = React.createContext({
-  cart: [],
-  totalAmount: 0,
-  addItem: () => {},
-  removeItem: (id) => {},
-});
+import { CartContext } from "./contexts";
 
 const SHOPPING_CART_KEY = "cart-storage-key";
 
-export class CartProvider extends Component {
+class CartProvider extends Component {
   constructor() {
     super();
     this.state = {
@@ -18,9 +12,13 @@ export class CartProvider extends Component {
     };
   }
 
+  updatedTotalAmount(amount) {
+    this.setState({ totalAmount: amount });
+  }
+
   addToCartHandler(item) {
-    const updatedTotalAmount =
-      this.state.totalAmount + item.prices[0].amount * item.qty;
+    // const updatedTotalAmount =
+    //   this.state.totalAmount + item.prices[0].amount * item.qty;
 
     const existingCartItemIndex = this.state.cart.findIndex(
       (cartItem) => cartItem.id === item.id
@@ -39,7 +37,7 @@ export class CartProvider extends Component {
     } else {
       updatedItems = this.state.cart.concat(item);
     }
-    this.setState({ cart: updatedItems, totalAmount: updatedTotalAmount });
+    this.setState({ cart: updatedItems });
   }
 
   removeFromCartHandler(id) {
@@ -48,8 +46,8 @@ export class CartProvider extends Component {
     );
     const existingItem = this.state.cart[existingCartItemIndex];
 
-    const updatedTotalAmount =
-      this.state.totalAmount - existingItem.prices[0].amount;
+    // const updatedTotalAmount =
+    //   this.state.totalAmount - existingItem.prices[0].amount;
 
     let updatedItems;
     if (existingItem.qty === 1) {
@@ -59,7 +57,7 @@ export class CartProvider extends Component {
       updatedItems = [...this.state.cart];
       updatedItems[existingCartItemIndex] = updatedItem;
     }
-    this.setState({ cart: updatedItems, totalAmount: updatedTotalAmount });
+    this.setState({ cart: updatedItems });
   }
 
   componentDidUpdate() {
@@ -82,6 +80,7 @@ export class CartProvider extends Component {
     const cartContext = {
       cart: this.state.cart,
       totalAmount: this.state.totalAmount,
+      updateTotalAmount: this.updatedTotalAmount.bind(this),
       addItem: this.addToCartHandler.bind(this),
       removeItem: this.removeFromCartHandler.bind(this),
     };
@@ -94,4 +93,4 @@ export class CartProvider extends Component {
   }
 }
 
-export default CartContext;
+export default CartProvider;

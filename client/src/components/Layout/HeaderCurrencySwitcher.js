@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { gql } from "graphql-tag";
 import { Query } from "@apollo/client/react/components";
-import CurrencyContext from "../../store/currency-context";
+import { CurrencyContext } from "../../store/contexts";
 
 import classes from "./HeaderCurrencySwitcher.module.css";
 
@@ -39,7 +39,6 @@ class HeaderCurrencySwitcher extends Component {
 
   changeCurrencyHandler(e) {
     this.context.changeCurrency(e.target.id);
-    console.log(e.target.id);
   }
 
   render() {

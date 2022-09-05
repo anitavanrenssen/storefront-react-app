@@ -6,6 +6,7 @@ import { Query } from "@apollo/client/react/components";
 
 import ProductGallery from "./ProductGallery";
 import ProductDetails from "./ProductDetails";
+import { CurrencyContext } from "../../../store/contexts";
 
 const PRODUCT_QUERY = gql`
   query Product($id: String!) {
@@ -39,7 +40,12 @@ const PRODUCT_QUERY = gql`
 `;
 
 class ProductDescription extends Component {
+  static contextType = CurrencyContext;
+
   render() {
+
+    const { currency } = this.context;
+
     return (
       <div>
         <Query query={PRODUCT_QUERY} variables={{ id: this.props.id }}>
@@ -55,7 +61,7 @@ class ProductDescription extends Component {
                   name={product.name}
                   inStock={product.inStock}
                 />
-                <ProductDetails product={product} />
+                <ProductDetails product={product} currency={currency}/>
               </div>
             );
           }}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "../UI/Card";
 import ProductCartButton from "./ProductCartButton";
 import classes from "./ProductItem.module.css";
-import CartContext from "../../store/cart-context";
+import { CartContext } from "../../store/contexts";
 
 class ProductItem extends Component {
   static contextType = CartContext;
@@ -39,6 +39,10 @@ class ProductItem extends Component {
   }
 
   render() {
+    const filteredCurrency = this.props.product.prices.filter((price) => {
+      return price.currency.label === this.props.currency.currency;
+    });
+
     return (
       <Card>
         <div
@@ -67,8 +71,8 @@ class ProductItem extends Component {
                   {this.props.product.brand} {this.props.product.name}
                 </p>
                 <p className={classes.price}>
-                  {this.props.product.prices[0].currency.symbol}
-                  {this.props.product.prices[0].amount}
+                  {filteredCurrency[0].currency.symbol}
+                  {filteredCurrency[0].amount}
                 </p>
               </div>
             </div>
