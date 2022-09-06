@@ -6,9 +6,14 @@ import classes from "./CartModal.module.css";
 import { CartContext } from "../../store/contexts";
 import { CurrencyContext } from "../../store/contexts";
 import CartTotal from "./CartTotal";
+import Button from "../UI/Button";
 
 class CartModal extends Component {
   static contextType = CartContext;
+
+  checkOutHandler() {
+    alert("Checking out...");
+  }
 
   render() {
     const { cart } = this.context;
@@ -19,12 +24,14 @@ class CartModal extends Component {
 
     return (
       <Modal onClose={this.props.onClose}>
-        <h3>
-          My Bag, {numberOfCartItems}{" "}
-          {numberOfCartItems === 1 ? "item" : "items"}
-        </h3>
+        <div className={classes.modalheading}>
+          <span className={classes.bagheading}>My Bag, </span>
+          <span className={classes.modalitemamount}>
+            {numberOfCartItems} {numberOfCartItems === 1 ? "item" : "items"}
+          </span>
+        </div>
         <div className={classes.cartlist}>
-          <CartList cart={cart} />
+          <CartList cart={cart} cartModalStyle={true} />
         </div>
         <div>
           <CartContext.Consumer>
@@ -35,6 +42,7 @@ class CartModal extends Component {
                     cart={cart}
                     currency={currency}
                     quantity={numberOfCartItems}
+                    cartModalStyle={true}
                   />
                 )}
               </CurrencyContext.Consumer>
@@ -42,9 +50,19 @@ class CartModal extends Component {
           </CartContext.Consumer>
         </div>
 
-        <button>
-          <Link to="/cart">View Bag</Link>
-        </button>
+        <div className={classes.cartmodalbuttons}>
+          <Link to="/cart" className={classes.viewbaglink}>
+            <button className={classes.cartmodalviewbagbutton}>View Bag</button>
+          </Link>
+
+          <Button
+            onClick={this.checkOutHandler}
+            inStock={true}
+            cartModalStyle={true}
+          >
+            Check out
+          </Button>
+        </div>
       </Modal>
     );
   }

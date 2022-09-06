@@ -25,11 +25,17 @@ class CartGallery extends Component {
   }
 
   render() {
-    const { gallery, name } = this.props;
+    const { gallery, name, cartModalStyle } = this.props;
     return (
       <div>
-        <div className={classes.carouselcontainer}>
-          {gallery.length > 1 && (
+        <div
+          className={`${
+            cartModalStyle
+              ? classes.modalcarouselcontainer
+              : classes.carouselcontainer
+          }`}
+        >
+          {!cartModalStyle && gallery.length > 1 && (
             <div>
               <button
                 className={classes.arrowleft}

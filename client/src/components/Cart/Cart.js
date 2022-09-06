@@ -12,10 +12,6 @@ class Cart extends Component {
   render() {
     const { cart } = this.context;
 
-    // const amountTotal = totalAmount.toFixed(2);
-
-    // const amountTax = (totalAmount * 0.21).toFixed(2);
-
     const numberOfCartItems = cart.reduce((curNumber, item) => {
       return curNumber + item.qty;
     }, 0);
@@ -41,7 +37,7 @@ class Cart extends Component {
             )}
           </CartContext.Consumer>
         </div>
-        <Button>Order</Button>
+        <Button inStock={true}>Order</Button>
       </div>
     );
   }

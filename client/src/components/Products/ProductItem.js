@@ -79,7 +79,7 @@ class ProductItem extends Component {
           </Link>
           {this.props.product.attributes.length === 0 &&
             this.state.showCartButton && (
-              <ProductCartButton
+              <ProductCartButton inStock={this.props.product.inStock}
                 onClick={this.addToCartHandler.bind(
                   this,
 

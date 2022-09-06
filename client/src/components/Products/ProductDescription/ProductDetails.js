@@ -60,7 +60,7 @@ class ProductDetails extends Component {
             {filteredCurrency[0].amount}
           </div>
         </div>
-        <Button onClick={this.addItemHandler.bind(this, product)}>
+        <Button inStock={product.inStock} onClick={this.addItemHandler.bind(this, product)}>
           {!product.inStock ? "Out of stock" : "Add to cart"}
         </Button>
         <div className={classes.description}>{product.description}</div>

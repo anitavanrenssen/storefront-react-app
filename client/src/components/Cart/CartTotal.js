@@ -1,4 +1,5 @@
 import { Component } from "react";
+import classes from "./CartTotal.module.css";
 
 class CartTotal extends Component {
   render() {
@@ -20,10 +21,12 @@ class CartTotal extends Component {
 
     return (
       <div>
-        <p>Tax 21%: {taxAmount}</p>
-        <p>Quantity: {this.props.cart.cart ? this.props.quantity : 0}</p>
-        <div>
-          <span>Total:</span>
+        {!this.props.cartModalStyle && <p>Tax 21%: {taxAmount}</p>}
+        {!this.props.cartModalStyle && (
+          <p>Quantity: {this.props.cart.cart ? this.props.quantity : 0}</p>
+        )}
+        <div className={`${this.props.cartModalStyle && classes.total}`}>
+          <span>Total{!this.props.cartModalStyle ? ": " : ""}</span>
           <span>{totalAmount}</span>
         </div>
       </div>

@@ -1,3 +1,56 @@
-/* .cartlist {
-  overflow: scroll;
-} */
+.bagheading {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: right;
+
+  color: #1d1f22;
+}
+
+.modalitemamount {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: right;
+
+  color: #1d1f22;
+}
+
+.modalheading {
+  margin-bottom: 32px;
+}
+
+.cartmodalbuttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  gap: 12px;
+}
+
+.cartmodalviewbagbutton {
+  width: 140px;
+  height: 43px;
+  background: #fff;
+  border: 1px solid #1d1f22;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
+
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #1d1f22;
+}
+
+.viewbaglink {
+  text-decoration: none;
+  color: #1d1f22;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}

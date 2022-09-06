@@ -43,7 +43,8 @@ class ProductAttributes extends Component {
 
   // addToCartHandler() {}
   render() {
-    const { product } = this.props;
+    const { product, cartModalStyle } = this.props;
+
     return (
       <div>
         {
@@ -51,10 +52,22 @@ class ProductAttributes extends Component {
             {product.attributes.map((attribute) => {
               return (
                 <div key={attribute.id} className={classes.attrblock}>
-                  <h4 className={classes.attrheading}>{attribute.name}:</h4>
+                  <h4
+                    className={`${
+                      this.props.cartModalStyle
+                        ? classes.modalattrheading
+                        : classes.attrheading
+                    }`}
+                  >
+                    {attribute.name}:
+                  </h4>
                   <div
                     className={
-                      attribute.type === "swatch"
+                      cartModalStyle
+                        ? attribute.type === "swatch"
+                          ? classes.modalswatchbuttons
+                          : classes.modalsizebuttons
+                        : attribute.type === "swatch"
                         ? classes.swatchbuttons
                         : classes.sizebuttons
                     }
@@ -67,7 +80,13 @@ class ProductAttributes extends Component {
                           value={item.displayValue}
                           name={attribute.name}
                           className={`${
-                            attribute.type === "swatch"
+                            cartModalStyle
+                              ? attribute.type === "swatch"
+                                ? classes.modalswatchbutton
+                                : attribute.name !== "Size"
+                                ? classes.modalattrbutton
+                                : classes.modalsizebutton
+                              : attribute.type === "swatch"
                               ? classes.swatchbutton
                               : classes.sizebutton
                           } 

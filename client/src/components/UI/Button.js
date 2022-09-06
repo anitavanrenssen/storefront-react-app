@@ -6,9 +6,12 @@ class Button extends Component {
   render() {
     return (
       <button
-        className={classes.button}
+      className={`${
+        this.props.cartModalStyle ? classes.modalbutton : classes.button
+      }`}
         type={this.props.type || "button"}
         onClick={this.props.onClick}
+        disabled={!this.props.inStock}
       >
         {this.props.children}
       </button>

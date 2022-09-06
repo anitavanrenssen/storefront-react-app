@@ -26,6 +26,7 @@ class CartList extends Component {
                 product={product}
                 onRemove={this.cartItemRemoveHandler.bind(this, product.id)}
                 onAdd={this.cartItemAddHandler.bind(this, product)}
+                cartModalStyle={this.props.cartModalStyle}
               />
             );
           })}

@@ -22,8 +22,15 @@
   /* margin-right: 8px; */
 }
 
-.activeswatch,
-.swatchbutton:hover {
+.modalswatchbutton {
+  width: 16px;
+  height: 16px;
+  border: none;
+}
+
+.activeswatch:hover,
+.swatchbutton:hover,
+.modalswatchbutton:hover {
   cursor: pointer;
   border: 1px solid #5ece7b !important;
 }
@@ -35,8 +42,44 @@
   background: #fff;
 }
 
-.activetext,
-.sizebutton:hover {
+.modalsizebutton {
+  width: 24px;
+  height: 24px;
+
+  /* font-family: "Source Sans Pro"; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 160%;
+  border: 1px solid #1d1f22;
+  background: #fff;
+
+  /* display: flex;
+  align-items: center;
+  text-align: center; */
+}
+
+.modalattrbutton {
+  padding: 0 4px 0 4px;
+  height: 24px;
+
+  /* font-family: "Source Sans Pro"; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 160%;
+  border: 1px solid #1d1f22;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.activetext:hover,
+.sizebutton:hover,
+.modalsizebutton:hover,
+.modalattrbutton:hover {
   background: #1d1f22;
   color: #fff;
   cursor: pointer;
@@ -48,8 +91,28 @@
   margin-bottom: 38px;
 }
 
+.modalsizebuttons {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 8px 0;
+}
+
 .swatchbuttons {
   display: flex;
   gap: 8px;
   margin-bottom: 38px;
+}
+.modalswatchbuttons {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 8px 0;
+}
+
+.modalattrheading {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #1d1f22;
 }

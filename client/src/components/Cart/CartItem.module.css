@@ -44,7 +44,8 @@
   flex-grow: auto;
 }
 
-.amountcontainer {
+.amountcontainer,
+.modalamountcontainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -54,6 +55,13 @@
 .amountcontainer button {
   height: 45px;
   width: 45px;
+  border: 1px solid #1d1f22;
+  background: #fff;
+  cursor: pointer;
+}
+.modalamountcontainer button {
+  height: 24px;
+  width: 24px;
   border: 1px solid #1d1f22;
   background: #fff;
   cursor: pointer;
@@ -69,8 +77,55 @@
 
   color: #1d1f22;
 }
+.modalamountcontainer span {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: center;
+
+  color: #1d1f22;
+}
 
 .amountgallery {
   display: flex;
   gap: 24px;
+}
+
+.modalamountgallery {
+  display: flex;
+  gap: 8px;
+}
+
+.modalcartitem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  width: 293px;
+}
+
+.modalname,
+.modalbrand {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 160%;
+
+  /* 
+display: flex;
+align-items: center; */
+
+  color: #1d1f22;
+}
+
+.modalprice {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  color: #1d1f22;
+  margin: 4px 0 8px 0;
 }
