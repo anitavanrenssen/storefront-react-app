@@ -64,6 +64,7 @@ class CartItem extends Component {
                   product={product}
                   onAddToCart={this.addToCartHandler.bind(this)}
                   cartModalStyle={this.props.cartModalStyle}
+                  cartStyle={this.props.cartStyle}
                 />
               ))}
           </div>

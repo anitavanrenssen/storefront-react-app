@@ -20,7 +20,7 @@ class Cart extends Component {
       <div className={classes.containercart}>
         <h1 className={classes.heading}>Cart</h1>
         <div className={classes.containercartlist}>
-          <CartList cart={cart} />
+          <CartList cart={cart} cartStyle={true} />
         </div>
         <div>
           <CartContext.Consumer>

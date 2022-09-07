@@ -60,13 +60,12 @@ class ProductItem extends Component {
                   src={this.props.product.gallery[0]}
                   alt={this.props.product.name}
                 />
-
                 {!this.props.product.inStock && (
                   <div className={classes.outofstock}>Out of Stock</div>
                 )}
               </div>
 
-              <div className={classes.content}>
+              <div className={`${classes.content} ${!this.props.product.inStock && classes.outofstockcontent}`}>
                 <p className={classes.title}>
                   {this.props.product.brand} {this.props.product.name}
                 </p>
@@ -79,7 +78,8 @@ class ProductItem extends Component {
           </Link>
           {this.props.product.attributes.length === 0 &&
             this.state.showCartButton && (
-              <ProductCartButton inStock={this.props.product.inStock}
+              <ProductCartButton
+                inStock={this.props.product.inStock}
                 onClick={this.addToCartHandler.bind(
                   this,
 

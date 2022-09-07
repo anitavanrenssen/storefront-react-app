@@ -26,7 +26,15 @@ class CartTotal extends Component {
           <p>Quantity: {this.props.cart.cart ? this.props.quantity : 0}</p>
         )}
         <div className={`${this.props.cartModalStyle && classes.total}`}>
-          <span>Total{!this.props.cartModalStyle ? ": " : ""}</span>
+          <span
+            className={
+              this.props.cartModalStyle && this.props.cart.cart > 2
+                ? classes.totalamount
+                : ""
+            }
+          >
+            Total{!this.props.cartModalStyle ? ": " : ""}
+          </span>
           <span>{totalAmount}</span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { CartContext } from "../../store/contexts";
-
+import classes from "./CartList.module.css";
 import CartItem from "./CartItem";
 
 class CartList extends Component {
@@ -14,9 +14,11 @@ class CartList extends Component {
   }
 
   render() {
-    const { cart } = this.props;
+    const { cart, cartModalStyle } = this.props;
     return (
-      <div>
+      <div
+        className={cartModalStyle && cart.length > 2 ? classes.cartlist : ""}
+      >
         {cart &&
           cart.length > 0 &&
           cart.map((product, index) => {
@@ -27,6 +29,7 @@ class CartList extends Component {
                 onRemove={this.cartItemRemoveHandler.bind(this, product.id)}
                 onAdd={this.cartItemAddHandler.bind(this, product)}
                 cartModalStyle={this.props.cartModalStyle}
+                cartStyle={this.props.cartStyle}
               />
             );
           })}

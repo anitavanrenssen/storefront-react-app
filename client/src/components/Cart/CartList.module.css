@@ -1,1 +1,4 @@
-
+.cartlist {
+  max-height: 487px;
+  overflow-y: scroll;
+}

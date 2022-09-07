@@ -41,9 +41,11 @@ class ProductAttributes extends Component {
     this.setSelectedItem(selectedAttributesObj);
   }
 
-  // addToCartHandler() {}
   render() {
     const { product, cartModalStyle } = this.props;
+
+    console.log(product.attributes[0].name);
+    console.log(this.state);
 
     return (
       <div>
@@ -79,6 +81,11 @@ class ProductAttributes extends Component {
                           id={item.id}
                           value={item.displayValue}
                           name={attribute.name}
+                          disabled={
+                            !this.props.cartStyle &&
+                            !this.props.cartModalStyle &&
+                            !this.props.inStock
+                          }
                           className={`${
                             cartModalStyle
                               ? attribute.type === "swatch"
@@ -99,14 +106,16 @@ class ProductAttributes extends Component {
                             attribute.type === "text" &&
                             classes.activetext
                           }
+                          } ${
+                            attribute.type === "swatch" &&
+                            item.value === "#FFFFFF"
+                              ? classes.whiteswatchbutton
+                              : ""
+                          }
                           `}
                           style={{
                             background:
                               attribute.type === "swatch" && item.value,
-                            border:
-                              attribute.type === "swatch" &&
-                              item.value === "#FFFFFF" &&
-                              "1px solid #1D1F22",
                           }}
                           onClick={this.attributeSelectHandler.bind(this)}
                         >
