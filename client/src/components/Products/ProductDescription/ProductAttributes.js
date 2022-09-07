@@ -1,18 +1,26 @@
 import React, { Component } from "react";
 import classes from "./ProductAttributes.module.css";
+import { CartContext } from "../../../store/contexts";
 
 class ProductAttributes extends Component {
+  static contextType = CartContext;
+
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      selectedAttributes: {},
+    };
   }
 
   setSelectedItem(selectedAttributes) {
+    console.log(selectedAttributes);
     const selectedItem = this.props.product.attributes.find((attribute) => {
       return attribute.items.every((item) => {
-        return selectedAttributes[item.name] === item.value;
+        console.log(item);
+        return selectedAttributes[item.id] === item.displayValue;
       });
     });
+
     this.setState({
       selectedItem: selectedItem,
     });
@@ -29,14 +37,16 @@ class ProductAttributes extends Component {
   componentDidMount() {
     const selectedAttributesObj = this.props.product.attributes.reduce(
       (prev, curr, i) => {
-        prev[curr.name] = curr.value;
+        prev[curr.name] = curr.items[0].displayValue;
+
         return prev;
       },
+
       {}
     );
 
     this.setState({
-      selectedAttributes: selectedAttributesObj,
+      selectedAttributesObj,
     });
     this.setSelectedItem(selectedAttributesObj);
   }
@@ -44,8 +54,32 @@ class ProductAttributes extends Component {
   render() {
     const { product, cartModalStyle } = this.props;
 
-    console.log(product.attributes[0].name);
-    console.log(this.state);
+    // const attr = this.state.selectedAttributes;
+
+    // console.log(
+    //   Object.values(this.state.selectedAttributes).every((v) => {
+    //     return v === product.attributes;
+    //   })
+    // );
+
+    // const obj = this.context.cart.map((item) => {
+    //   return item.selectedAttributes;
+    // });
+
+    // return item.selectedAttributes.every((attr) => {
+    //   return Object.keys(attr).forEach((e) => {
+    //     console.log(`key=${e} value=${attr[e]}`);
+    //     // let values = item.selectedAttributes[key];
+    //     // return values;
+    //   });
+    // });
+
+    // const obj = this.props.product.attributes.find((attribute) => {
+    //   return attribute.items.every((item) => {
+    //     return selectedAttributes[attribute.name] === item.value;
+    //   });
+
+    // console.log(obj);
 
     return (
       <div>
@@ -98,12 +132,22 @@ class ProductAttributes extends Component {
                               : classes.sizebutton
                           } 
                           ${
-                            item.id === this.state.attributeID &&
+                            Object.values(this.state.selectedAttributes).every(
+                              (v) => {
+                                return v === item.id;
+                              }
+                            ) &&
                             attribute.type === "swatch" &&
                             classes.activeswatch
                           } ${
-                            item.id === this.state.attributeID &&
                             attribute.type === "text" &&
+                            Object.values(this.state.selectedAttributes).every(
+                              (v) => {
+                                // console.log(this.state.selectedAttributes);
+                                // console.log(v, item.id);
+                                return v === item.id;
+                              }
+                            ) &&
                             classes.activetext
                           }
                           } ${

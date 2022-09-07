@@ -65,7 +65,11 @@ class ProductItem extends Component {
                 )}
               </div>
 
-              <div className={`${classes.content} ${!this.props.product.inStock && classes.outofstockcontent}`}>
+              <div
+                className={`${classes.content} ${
+                  !this.props.product.inStock && classes.outofstockcontent
+                }`}
+              >
                 <p className={classes.title}>
                   {this.props.product.brand} {this.props.product.name}
                 </p>

@@ -17,6 +17,7 @@ class CartProvider extends Component {
   }
 
   addToCartHandler(item) {
+    console.log(item);
     // const updatedTotalAmount =
     //   this.state.totalAmount + item.prices[0].amount * item.qty;
 

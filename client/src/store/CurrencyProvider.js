@@ -7,7 +7,7 @@ class CurrencyProvider extends Component {
   constructor() {
     super();
     this.state = {
-      currency: "",
+      currency: "USD",
     };
   }
 
