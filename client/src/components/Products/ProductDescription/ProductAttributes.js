@@ -9,14 +9,15 @@ class ProductAttributes extends Component {
     super();
     this.state = {
       selectedAttributes: {},
+      selectedOption: {},
     };
   }
 
   setSelectedItem(selectedAttributes) {
-    console.log(selectedAttributes);
+    // console.log(selectedAttributes);
     const selectedItem = this.props.product.attributes.find((attribute) => {
       return attribute.items.every((item) => {
-        console.log(item);
+        // console.log(item);
         return selectedAttributes[item.id] === item.displayValue;
       });
     });
@@ -24,6 +25,15 @@ class ProductAttributes extends Component {
     this.setState({
       selectedItem: selectedItem,
     });
+
+    // const selectedOption = this.state.selectedOption;
+
+    // for (const [key, value] of Object.entries(selectedAttributes)) {
+    //   this.setState((prevState) => ({
+    //     selectedOption: [...prevState.selectedOption, `${key}-${value}`],
+    //   }));
+    // }
+
     this.props.onAddToCart(this.state);
   }
 
@@ -53,6 +63,17 @@ class ProductAttributes extends Component {
 
   render() {
     const { product, cartModalStyle } = this.props;
+
+    // console.log(this.state.selectedAttributes);
+
+    // console.log(Object.hasOwn(this.state.selectedAttributes, "Color"));
+
+    // let values = Object.values(this.state.selectedAttributes);
+    // console.log(values.includes("Cyan"));
+
+    // for (const [key, value] of Object.entries(this.state.selectedAttributes)) {
+    //   return { key: value };
+    // }
 
     // const attr = this.state.selectedAttributes;
 
@@ -132,23 +153,28 @@ class ProductAttributes extends Component {
                               : classes.sizebutton
                           } 
                           ${
-                            Object.values(this.state.selectedAttributes).every(
-                              (v) => {
-                                return v === item.id;
-                              }
-                            ) &&
                             attribute.type === "swatch" &&
-                            classes.activeswatch
-                          } ${
-                            attribute.type === "text" &&
-                            Object.values(this.state.selectedAttributes).every(
-                              (v) => {
-                                // console.log(this.state.selectedAttributes);
-                                // console.log(v, item.id);
-                                return v === item.id;
-                              }
+                            Object.hasOwn(
+                              this.state.selectedAttributes,
+                              attribute.id
                             ) &&
-                            classes.activetext
+                            Object.values(
+                              this.state.selectedAttributes
+                            ).includes(item.id)
+                              ? classes.activeswatch
+                              : ""
+                          } 
+                          ${
+                            attribute.type === "text" &&
+                            Object.hasOwn(
+                              this.state.selectedAttributes,
+                              attribute.id
+                            ) &&
+                            Object.values(
+                              this.state.selectedAttributes
+                            ).includes(item.id)
+                              ? classes.activetext
+                              : ""
                           }
                           } ${
                             attribute.type === "swatch" &&
