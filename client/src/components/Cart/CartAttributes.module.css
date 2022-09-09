@@ -28,9 +28,7 @@
   border: none;
 }
 
-.activeswatch,
-.swatchbutton:hover,
-.modalswatchbutton:hover {
+.activeswatch {
   cursor: pointer;
   border: 1px solid #5ece7b !important;
 }
@@ -40,6 +38,10 @@
   height: 45px;
   border: 1px solid #1d1f22;
   background: #fff;
+}
+
+.sizebutton[disabled] {
+  opacity: 0.7;
 }
 
 .modalsizebutton {
@@ -76,10 +78,7 @@
   text-align: center;
 }
 
-.activetext,
-.sizebutton:hover,
-.modalsizebutton:hover,
-.modalattrbutton:hover {
+.activetext {
   background: #1d1f22;
   color: #fff;
   cursor: pointer;
@@ -118,37 +117,40 @@
 }
 
 .swatchbutton[disabled] {
-  cursor: not-allowed;
-  opacity: 0.7;
+  cursor: auto;
+  pointer-events: none;
 }
 
-.swatchbutton[disabled]:hover {
+/* .swatchbutton[disabled]:hover {
   border: none !important;
-}
+} */
 
 .sizebutton[disabled] {
-  cursor: not-allowed;
-  opacity: 0.7;
+  cursor: auto;
+  /* opacity: 0.7;
   color: #1d1f22;
-  border: 1px solid rgb(29, 31, 34, 0.7);
+  border: 1px solid rgb(29, 31, 34, 0.7); */
+  pointer-events: none;
 }
 
-.sizebutton[disabled]:hover {
+/* .sizebutton[disabled]:hover {
   background: #fff;
   color: #1d1f22;
-}
+} */
 
 .whiteswatchbutton {
   border: 1px solid #1d1f22;
 }
 
-.whiteswatchbutton[disabled]:hover {
+/* .whiteswatchbutton[disabled]:hover {
   border: 1px solid #1d1f22 !important;
-}
+} */
 
 .selectedcartattribute {
-  pointer-events: none;
-  cursor: auto;
   color: #fff;
   background: #1d1f22;
+}
+
+.selectedswatchattribute {
+  border: 1px solid #5ece7b;
 }

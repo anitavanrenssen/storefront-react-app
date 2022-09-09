@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import classes from "./CartItem.module.css";
-import ProductAttributes from "../Products/ProductDescription/ProductAttributes";
+// import ProductAttributes from "../Products/ProductDescription/ProductAttributes";
 import CartGallery from "./CartGallery";
 import { CurrencyContext } from "../../store/contexts";
+import CartAttributes from "./CartAttributes";
 
 class CartItem extends Component {
   static contextType = CurrencyContext;
@@ -60,11 +61,15 @@ class CartItem extends Component {
             </div>
             {!product.attributes ||
               (product.attributes.length > 0 && (
-                <ProductAttributes
+                // <ProductAttributes
+                //   product={product}
+                //   onAddToCart={this.addToCartHandler.bind(this)}
+                //   cartModalStyle={this.props.cartModalStyle}
+                //   cartStyle={this.props.cartStyle}
+                // />
+                <CartAttributes
                   product={product}
-                  onAddToCart={this.addToCartHandler.bind(this)}
                   cartModalStyle={this.props.cartModalStyle}
-                  cartStyle={this.props.cartStyle}
                 />
               ))}
           </div>

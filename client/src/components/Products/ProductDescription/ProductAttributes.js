@@ -9,7 +9,7 @@ class ProductAttributes extends Component {
     super();
     this.state = {
       selectedAttributes: {},
-      selectedOption: {},
+      cartAttributes: [],
     };
   }
 
@@ -59,48 +59,73 @@ class ProductAttributes extends Component {
       selectedAttributesObj,
     });
     this.setSelectedItem(selectedAttributesObj);
+
+    let cartAttr = this.context.cart.map((item) => {
+      return item.selectedAttributes;
+    });
+
+    this.setState({ cartAttributes: cartAttr });
   }
 
   render() {
-    const { product, cartModalStyle } = this.props;
+    const { product, cartModalStyle, cartStyle, inStock } = this.props;
+    // const { cart } = this.context;
 
     // console.log(this.state.selectedAttributes);
 
-    // console.log(Object.hasOwn(this.state.selectedAttributes, "Color"));
+    // let res = this.state.cartAttributes.every((attr) => {
+    //   return (
+    //     Object.hasOwn(attr, product.attributes[0].id) &&
+    //     Object.values(attr).includes(product.attributes[0].items[0].id)
+    //   );
+    // });
 
-    // let values = Object.values(this.state.selectedAttributes);
-    // console.log(values.includes("Cyan"));
+    // console.log(res);
 
-    // for (const [key, value] of Object.entries(this.state.selectedAttributes)) {
-    //   return { key: value };
-    // }
+    // cart.map((item) => {
+    //   return Object.entries(item).map((attr) => {
+    //     return attr[0] === "selectedAttributes"
+    //       ? Object.entries(attr[1]).map((selattr) => {
+    //           return console.log(
+    //             selattr.includes("41") && selattr.includes("Size")
+    //           );
+    //         })
+    //       : item;
+    //   });
+    // });
 
-    // const attr = this.state.selectedAttributes;
+    // console.log(cart[0].selectedAttributes);
 
-    // console.log(
-    //   Object.values(this.state.selectedAttributes).every((v) => {
-    //     return v === product.attributes;
-    //   })
+    // let res = Object.hasOwn(cart[1].selectedAttributes, "Size");
+    // console.log(res);
+
+    // let ress = Object.values(cart[1].selectedAttributes).includes("42");
+    // console.log(ress);
+
+    // cart.map((cartItem) => {
+    //   return Object.hasOwn(cartItem.selectedAttributes);
+    // }) &&
+
+    // let result = cart.every((cartItem) => {
+    //   console.log(cartItem.selectedAttributes);
+    //   return cartItem.selectedAttributes ? cartItem.selectedAttributes : {};
+    // });
+
+    // let res = Object.hasOwn(
+    //   this.state.selectedAttributes,
+    //   product.attributes[0].id
     // );
 
-    // const obj = this.context.cart.map((item) => {
-    //   return item.selectedAttributes;
-    // });
+    // console.log(product.attributes[0].id);
+    // console.log(result);
+    // console.log(res);
 
-    // return item.selectedAttributes.every((attr) => {
-    //   return Object.keys(attr).forEach((e) => {
-    //     console.log(`key=${e} value=${attr[e]}`);
-    //     // let values = item.selectedAttributes[key];
-    //     // return values;
-    //   });
-    // });
-
-    // const obj = this.props.product.attributes.find((attribute) => {
-    //   return attribute.items.every((item) => {
-    //     return selectedAttributes[attribute.name] === item.value;
-    //   });
-
-    // console.log(obj);
+    // console.log(
+    //   Object.entries(this.state.selectedAttributes).map((attr) => {
+    //     console.log(attr);
+    //     return attr.includes("Touch ID in keyboard", "No");
+    //   })
+    // );
 
     return (
       <div>
@@ -136,11 +161,7 @@ class ProductAttributes extends Component {
                           id={item.id}
                           value={item.displayValue}
                           name={attribute.name}
-                          disabled={
-                            !this.props.cartStyle &&
-                            !this.props.cartModalStyle &&
-                            !this.props.inStock
-                          }
+                          disabled={!cartStyle && !cartModalStyle && !inStock}
                           className={`${
                             cartModalStyle
                               ? attribute.type === "swatch"
@@ -152,7 +173,10 @@ class ProductAttributes extends Component {
                               ? classes.swatchbutton
                               : classes.sizebutton
                           } 
+                         
                           ${
+                            !cartModalStyle &&
+                            !cartStyle &&
                             attribute.type === "swatch" &&
                             Object.hasOwn(
                               this.state.selectedAttributes,
@@ -165,6 +189,8 @@ class ProductAttributes extends Component {
                               : ""
                           } 
                           ${
+                            !cartModalStyle &&
+                            !cartStyle &&
                             attribute.type === "text" &&
                             Object.hasOwn(
                               this.state.selectedAttributes,
@@ -176,12 +202,13 @@ class ProductAttributes extends Component {
                               ? classes.activetext
                               : ""
                           }
-                          } ${
-                            attribute.type === "swatch" &&
-                            item.value === "#FFFFFF"
-                              ? classes.whiteswatchbutton
-                              : ""
-                          }
+                           ${
+                             attribute.type === "swatch" &&
+                             item.value === "#FFFFFF"
+                               ? classes.whiteswatchbutton
+                               : ""
+                           }
+                         
                           `}
                           style={{
                             background:
