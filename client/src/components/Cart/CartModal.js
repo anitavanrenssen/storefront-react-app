@@ -11,9 +11,9 @@ import Button from "../UI/Button";
 class CartModal extends Component {
   static contextType = CartContext;
 
-  checkOutHandler() {
-    alert("Checking out...");
-  }
+  // checkOutHandler() {
+  //   alert("Checking out...");
+  // }
 
   render() {
     const { cart } = this.context;
@@ -33,7 +33,8 @@ class CartModal extends Component {
         <div className={classes.cartlist}>
           <CartList cart={cart} cartModalStyle={true} />
         </div>
-        <div>
+        <div className={classes.total}>
+          <p>Total</p>
           <CartContext.Consumer>
             {(cart) => (
               <CurrencyContext.Consumer>
@@ -51,12 +52,16 @@ class CartModal extends Component {
         </div>
 
         <div className={classes.cartmodalbuttons}>
-          <Link to="/cart" className={classes.viewbaglink}>
+          <Link
+            to="/cart"
+            className={classes.viewbaglink}
+            onClick={this.props.onClose}
+          >
             <button className={classes.cartmodalviewbagbutton}>View Bag</button>
           </Link>
 
           <Button
-            onClick={this.checkOutHandler}
+            onClick={this.props.onClose}
             inStock={true}
             cartModalStyle={true}
           >

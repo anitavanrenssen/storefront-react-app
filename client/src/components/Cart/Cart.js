@@ -23,20 +23,28 @@ class Cart extends Component {
         <div className={classes.containercartlist}>
           <CartList cart={cart} cartStyle={true} />
         </div>
-        <div>
-          <CartContext.Consumer>
-            {(cart) => (
-              <CurrencyContext.Consumer>
-                {(currency) => (
-                  <CartTotal
-                    cart={cart}
-                    currency={currency}
-                    quantity={numberOfCartItems}
-                  />
-                )}
-              </CurrencyContext.Consumer>
-            )}
-          </CartContext.Consumer>
+        <div className={classes.carttotals}>
+          <div className={classes.carttotal}>
+            <p>Tax 21%:</p>
+            <p>Quantity:</p>
+            <p>Total:</p>
+          </div>
+          <div>
+            <CartContext.Consumer>
+              {(cart) => (
+                <CurrencyContext.Consumer>
+                  {(currency) => (
+                    <CartTotal
+                      cart={cart}
+                      currency={currency}
+                      quantity={numberOfCartItems}
+                      cartStyle={true}
+                    />
+                  )}
+                </CurrencyContext.Consumer>
+              )}
+            </CartContext.Consumer>
+          </div>
         </div>
         <Button inStock={true}>Order</Button>
       </div>

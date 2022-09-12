@@ -1,4 +1,5 @@
 import { Component } from "react";
+import CurrencySymbol from "../UI/CurrencySymbol";
 import classes from "./CartTotal.module.css";
 
 class CartTotal extends Component {
@@ -20,23 +21,20 @@ class CartTotal extends Component {
     const taxAmount = (totalAmount * 0.21).toFixed(2);
 
     return (
-      <div>
-        {!this.props.cartModalStyle && <p>Tax 21%: {taxAmount}</p>}
+      <div className={this.props.cartStyle && classes.total}>
         {!this.props.cartModalStyle && (
-          <p>Quantity: {this.props.cart.cart ? this.props.quantity : 0}</p>
+          <p>
+            <CurrencySymbol cartStyle={true} />
+            {taxAmount}
+          </p>
         )}
-        <div className={`${this.props.cartModalStyle && classes.total}`}>
-          <span
-            className={
-              this.props.cartModalStyle && this.props.cart.cart > 2
-                ? classes.totalamount
-                : ""
-            }
-          >
-            Total{!this.props.cartModalStyle ? ": " : ""}
-          </span>
-          <span>{totalAmount}</span>
-        </div>
+        {!this.props.cartModalStyle && (
+          <p>{this.props.cart.cart ? this.props.quantity : 0}</p>
+        )}
+        <p className={this.props.cartModalStyle && classes.totalamount}>
+          <CurrencySymbol />
+          {totalAmount}
+        </p>
       </div>
     );
   }

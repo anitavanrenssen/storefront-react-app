@@ -69,6 +69,7 @@ class App extends Component {
               <HeaderCurrencySwitcher
                 show={this.state.showCurrencySwitcher}
                 onClickOutside={this.hideCurrencySwitcherHandler.bind(this)}
+                onClick={this.hideCurrencySwitcherHandler.bind(this)}
               />
             )}
             <Header

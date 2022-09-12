@@ -4,6 +4,7 @@ import { Query } from "@apollo/client/react/components";
 import { CurrencyContext } from "../../store/contexts";
 
 import classes from "./HeaderCurrencySwitcher.module.css";
+// import HeaderCurrencySwitcherButton from "./HeaderCurrencySwitcherButton";
 
 const CURRENCIES_QUERY = gql`
   {
@@ -24,7 +25,12 @@ class HeaderCurrencySwitcher extends Component {
   }
 
   clickOutsideHandler(event) {
-    if (this.ref.current && !this.ref.current.contains(event.target)) {
+    if (
+      this.ref.current &&
+      !this.ref.current.contains(event.target)
+      // &&
+      // !this.ref.current.contains(<HeaderCurrencySwitcherButton />)
+    ) {
       this.props.onClickOutside && this.props.onClickOutside();
     }
   }
@@ -48,7 +54,7 @@ class HeaderCurrencySwitcher extends Component {
 
     return (
       <div ref={this.ref}>
-        <ul className={classes.dropdownlist}>
+        <ul className={classes.dropdownlist} onClick={this.props.onClick}>
           <Query query={CURRENCIES_QUERY}>
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;

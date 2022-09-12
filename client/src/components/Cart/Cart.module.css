@@ -18,3 +18,28 @@
   flex-direction: column;
   gap: 8px;
 }
+
+.carttotals {
+  display: flex;
+  gap: 6px;
+  margin: 32px 0 16px 0;
+}
+
+.carttotal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.carttotal p {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1d1f22;
+}
+
+.carttotal p:last-child {
+  font-weight: 500;
+}

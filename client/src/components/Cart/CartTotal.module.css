@@ -1,13 +1,23 @@
+.total p {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1d1f22;
+}
+
 .total {
   display: flex;
-  justify-content: space-between;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
-  margin-top: 41px;
-  /* or 112% */
+  flex-direction: column;
+  gap: 8px;
+}
 
+.totalamount {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
   color: #1d1f22;
 }

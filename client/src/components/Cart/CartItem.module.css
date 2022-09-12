@@ -102,7 +102,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
-  width: 293px;
+  /* width: 293px; */
 }
 
 .modalname,
@@ -128,4 +128,27 @@ align-items: center; */
   line-height: 160%;
   color: #1d1f22;
   margin: 4px 0 8px 0;
+}
+
+.minusbutton,
+.plusbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plusbutton {
+  position: relative;
+}
+
+.plus {
+  position: absolute;
+  left: 17px;
+  transform: rotate(90deg);
+}
+
+.modalplus {
+  position: absolute;
+  left: 11px;
+  transform: rotate(90deg);
 }

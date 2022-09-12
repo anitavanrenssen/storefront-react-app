@@ -4,6 +4,7 @@ import classes from "./CartItem.module.css";
 import CartGallery from "./CartGallery";
 import { CurrencyContext } from "../../store/contexts";
 import CartAttributes from "./CartAttributes";
+import PlusMinusButton from "../UI/PlusMinusButton";
 
 class CartItem extends Component {
   static contextType = CurrencyContext;
@@ -88,9 +89,24 @@ class CartItem extends Component {
                 : classes.amountcontainer
             }`}
           >
-            <button onClick={this.props.onAdd}>+</button>
+            <button className={classes.plusbutton} onClick={this.props.onAdd}>
+              <div
+                className={
+                  this.props.cartModalStyle ? classes.modalplus : classes.plus
+                }
+              >
+                <PlusMinusButton cartModalStyle={this.props.cartModalStyle} />
+              </div>
+
+              <PlusMinusButton cartModalStyle={this.props.cartModalStyle} />
+            </button>
             <span>{product.qty}</span>
-            <button onClick={this.props.onRemove}>-</button>
+            <button
+              className={classes.minusbutton}
+              onClick={this.props.onRemove}
+            >
+              <PlusMinusButton cartModalStyle={this.props.cartModalStyle} />
+            </button>
           </div>
           <CartGallery
             gallery={product.gallery}
