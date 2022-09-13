@@ -30,7 +30,8 @@
 
 .activeswatch {
   cursor: pointer;
-  border: 1px solid #5ece7b !important;
+  border: 1px solid #fff !important;
+  box-shadow: 0 0 0 1px #5ece7b;
 }
 
 .sizebutton {
@@ -152,5 +153,20 @@
 }
 
 .selectedswatchattribute {
-  border: 1px solid #5ece7b;
+  border: 1px solid #fff !important;
+  box-shadow: 0 0 0 1px #5ece7b;
+}
+
+.activewhiteswatchbutton {
+  width: 31px !important;
+  height: 31px !important;
+  border: 1px solid #1d1f22 !important;
+  box-shadow: 0 0 0 1px #5ece7b !important;
+}
+
+.modalactivewhiteswatchbutton {
+  width: 15px !important;
+  height: 15px !important;
+  border: 1px solid #1d1f22 !important;
+  box-shadow: 0 0 0 1px #5ece7b !important;
 }

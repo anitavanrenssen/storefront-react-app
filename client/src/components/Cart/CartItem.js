@@ -37,7 +37,11 @@ class CartItem extends Component {
         }`}
       >
         <div className={classes.itemdetailsamount}>
-          <div>
+          <div
+            className={`${
+              this.props.cartModalStyle && classes.modalitemheading
+            }`}
+          >
             <h4
               className={`${
                 this.props.cartModalStyle ? classes.modalbrand : classes.brand

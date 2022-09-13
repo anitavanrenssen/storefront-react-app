@@ -2,31 +2,37 @@ import React, { Component } from "react";
 import Button from "../../UI/Button";
 import ProductAttributes from "./ProductAttributes";
 import { CartContext } from "../../../store/contexts";
+import parse from "html-react-parser";
+import DOMPurify from "dompurify";
 
 import classes from "./ProductDetails.module.css";
 
 class ProductDetails extends Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedAttributes: [],
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     selectedAttributes: [],
+  //   };
+  // }
 
   static contextType = CartContext;
 
   addToCartHandler(selectedAttributes) {
-    this.setState({
-      selectedAttributes: selectedAttributes.selectedAttributes,
-    });
+    // this.setState((curState) => {
+    //   return { selectedAttributes: selectedAttributes.selectedAttributes };
+    // });
+    let attr = selectedAttributes.selectedAttributes;
+    localStorage.setItem("attr-key", JSON.stringify(attr));
   }
 
   addItemHandler(product) {
+    let attr = JSON.parse(localStorage.getItem("attr-key"));
+
     this.context.addItem({
-      id: product.id + JSON.stringify(this.state.selectedAttributes),
+      id: product.id + JSON.stringify(attr),
       itemName: product.name,
       gallery: product.gallery,
-      selectedAttributes: this.state.selectedAttributes,
+      selectedAttributes: attr,
       attributes: product.attributes,
       prices: product.prices,
       brand: product.brand,
@@ -36,6 +42,15 @@ class ProductDetails extends Component {
 
   render() {
     const { product } = this.props;
+
+    const htmlString = product.description;
+    const htmlFrom = (htmlString) => {
+      const cleanHtmlString = DOMPurify.sanitize(htmlString, {
+        USE_PROFILES: { html: true },
+      });
+      const html = parse(cleanHtmlString);
+      return html;
+    };
 
     const filteredCurrency = product.prices.filter((currency) => {
       return currency.currency.label === this.props.currency;
@@ -67,7 +82,9 @@ class ProductDetails extends Component {
         >
           {!product.inStock ? "Out of stock" : "Add to cart"}
         </Button>
-        <div className={classes.description}>{product.description}</div>
+        <div className={classes.description}>
+          {htmlString && htmlFrom(htmlString)}
+        </div>
       </div>
     );
   }

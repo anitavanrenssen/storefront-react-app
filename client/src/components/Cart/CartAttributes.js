@@ -8,13 +8,11 @@ class CartAttributes extends Component {
   render() {
     const { product, cartModalStyle } = this.props;
     const { cart } = this.context;
-    console.log(cart);
 
     let cartMap = cart.filter((cartItem) => {
-      return cartItem.selectedAttributes === product.selectedAttributes;
+      return cartItem.id === product.id;
     });
-
-    console.log(cartMap[0].selectedAttributes);
+    console.log(cartMap);
 
     return (
       <div>
@@ -63,10 +61,10 @@ class CartAttributes extends Component {
                           } 
                           ${
                             attribute.type === "text" &&
-                            Object.hasOwn(
-                              cartMap[0].selectedAttributes,
-                              attribute.id
-                            ) &&
+                            // Object.hasOwn(
+                            //   cartMap[0].id,
+                            //   attribute.id
+                            // ) &&
                             Object.values(
                               cartMap[0].selectedAttributes
                             ).includes(item.id)
@@ -91,6 +89,34 @@ class CartAttributes extends Component {
                              attribute.type === "swatch" &&
                              item.value === "#FFFFFF"
                                ? classes.whiteswatchbutton
+                               : ""
+                           }
+                           ${
+                             attribute.type === "swatch" &&
+                             item.value === "#FFFFFF" &&
+                             Object.hasOwn(
+                               cartMap[0].selectedAttributes,
+                               attribute.id
+                             ) &&
+                             Object.values(
+                               cartMap[0].selectedAttributes
+                             ).includes(item.id) &&
+                             cartModalStyle
+                               ? classes.modalactivewhiteswatchbutton
+                               : ""
+                           }
+                           ${
+                             attribute.type === "swatch" &&
+                             item.value === "#FFFFFF" &&
+                             Object.hasOwn(
+                               cartMap[0].selectedAttributes,
+                               attribute.id
+                             ) &&
+                             Object.values(
+                               cartMap[0].selectedAttributes
+                             ).includes(item.id) &&
+                             !cartModalStyle
+                               ? classes.activewhiteswatchbutton
                                : ""
                            }
                           

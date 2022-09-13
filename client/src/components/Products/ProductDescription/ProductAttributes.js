@@ -208,6 +208,19 @@ class ProductAttributes extends Component {
                                ? classes.whiteswatchbutton
                                : ""
                            }
+                           ${
+                             attribute.type === "swatch" &&
+                             item.value === "#FFFFFF" && 
+                             Object.hasOwn(
+                              this.state.selectedAttributes,
+                              attribute.id
+                            ) &&
+                            Object.values(
+                              this.state.selectedAttributes
+                            ).includes(item.id)
+                               ? classes.activewhiteswatchbutton
+                               : ""
+                           }
                          
                           `}
                           style={{

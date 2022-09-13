@@ -120,7 +120,13 @@ align-items: center; */
   color: #1d1f22;
 }
 
+.modalitemheading {
+  height: 52px;
+  line-height: 160%;
+}
+
 .modalprice {
+  height: 26px;
   font-family: "Raleway";
   font-style: normal;
   font-weight: 500;
