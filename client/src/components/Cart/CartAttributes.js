@@ -10,12 +10,16 @@ class CartAttributes extends Component {
     const { cart } = this.context;
 
     let cartMap = cart.filter((cartItem) => {
-      return cartItem.id === product.id;
+      return cartItem.selectedAttributes === product.selectedAttributes;
     });
-    console.log(cartMap);
+    // console.log(cartMap);
 
     return (
-      <div>
+      <div className={`${
+        cartModalStyle
+          && classes.modalattr
+          
+      }`}>
         {
           <div className={classes.attr}>
             {product.attributes.map((attribute) => {
@@ -65,21 +69,25 @@ class CartAttributes extends Component {
                             //   cartMap[0].id,
                             //   attribute.id
                             // ) &&
-                            Object.values(
-                              cartMap[0].selectedAttributes
-                            ).includes(item.id)
+                            // Object.values(
+                            //   cartMap[0].selectedAttributes
+                            // ).includes(item.id)
+                            cartMap[0].selectedAttributes[attribute.id] ===
+                              item.id
                               ? classes.selectedcartattribute
                               : ""
                           }
                           ${
                             attribute.type === "swatch" &&
-                            Object.hasOwn(
-                              cartMap[0].selectedAttributes,
-                              attribute.id
-                            ) &&
-                            Object.values(
-                              cartMap[0].selectedAttributes
-                            ).includes(item.id)
+                            // Object.hasOwn(
+                            //   cartMap[0].selectedAttributes,
+                            //   attribute.id
+                            // ) &&
+                            // Object.values(
+                            //   cartMap[0].selectedAttributes
+                            // ).includes(item.id)
+                            cartMap[0].selectedAttributes[attribute.id] ===
+                              item.id
                               ? classes.selectedswatchattribute
                               : ""
                           }
@@ -94,13 +102,15 @@ class CartAttributes extends Component {
                            ${
                              attribute.type === "swatch" &&
                              item.value === "#FFFFFF" &&
-                             Object.hasOwn(
-                               cartMap[0].selectedAttributes,
-                               attribute.id
-                             ) &&
-                             Object.values(
-                               cartMap[0].selectedAttributes
-                             ).includes(item.id) &&
+                             cartMap[0].selectedAttributes[attribute.id] ===
+                               item.id &&
+                             //  Object.hasOwn(
+                             //    cartMap[0].selectedAttributes,
+                             //    attribute.id
+                             //  ) &&
+                             //  Object.values(
+                             //    cartMap[0].selectedAttributes
+                             //  ).includes(item.id) &&
                              cartModalStyle
                                ? classes.modalactivewhiteswatchbutton
                                : ""
@@ -108,13 +118,15 @@ class CartAttributes extends Component {
                            ${
                              attribute.type === "swatch" &&
                              item.value === "#FFFFFF" &&
-                             Object.hasOwn(
-                               cartMap[0].selectedAttributes,
-                               attribute.id
-                             ) &&
-                             Object.values(
-                               cartMap[0].selectedAttributes
-                             ).includes(item.id) &&
+                             cartMap[0].selectedAttributes[attribute.id] ===
+                               item.id &&
+                             //  Object.hasOwn(
+                             //    cartMap[0].selectedAttributes,
+                             //    attribute.id
+                             //  ) &&
+                             //  Object.values(
+                             //    cartMap[0].selectedAttributes
+                             //  ).includes(item.id) &&
                              !cartModalStyle
                                ? classes.activewhiteswatchbutton
                                : ""

@@ -11,6 +11,23 @@ import Button from "../UI/Button";
 class CartModal extends Component {
   static contextType = CartContext;
 
+  componentDidMount() {
+    if (this.props.showCart) {
+      // Get the current page scroll position
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      let scrollLeft =
+        window.pageXOffset || document.documentElement.scrollLeft;
+      // if any scroll is attempted, set this to the previous value
+      window.onscroll = function () {
+        window.scrollTo(scrollLeft, scrollTop);
+      };
+    }
+  }
+
+  componentWillUnmount() {
+    window.onscroll = function () {};
+  }
+
   // checkOutHandler() {
   //   alert("Checking out...");
   // }

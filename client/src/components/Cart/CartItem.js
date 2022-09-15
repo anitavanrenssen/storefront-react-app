@@ -34,6 +34,11 @@ class CartItem extends Component {
       <div
         className={`${
           this.props.cartModalStyle ? classes.modalcartitem : classes.cartitem
+        } ${
+          this.props.cartModalStyle &&
+          product.attributes &&
+          product.attributes.length > 2 &&
+          classes.modalcartitemlength
         }`}
       >
         <div className={classes.itemdetailsamount}>

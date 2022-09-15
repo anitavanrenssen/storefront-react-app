@@ -9,3 +9,8 @@ body {
   max-width: 1440px;
   margin: 0 auto;
 }
+
+.noscroll {
+  position: fixed;
+  overflow-y: scroll;
+}

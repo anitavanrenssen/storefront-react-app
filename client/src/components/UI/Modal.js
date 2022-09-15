@@ -4,14 +4,27 @@ import classes from "./Modal.module.css";
 
 class Backdrop extends Component {
   render() {
-    return <div className={classes.backdrop} onClick={this.props.onClose} />;
+    return (
+      <div
+        className={
+          this.props.currencyswitcher
+            ? classes.dropdownlistbackdrop
+            : classes.backdrop
+        }
+        onClick={this.props.onClose}
+      />
+    );
   }
 }
 
 class ModalOverlay extends Component {
   render() {
     return (
-      <div className={classes.modal}>
+      <div
+        className={
+          this.props.currencyswitcher ? classes.dropdownlist : classes.modal
+        }
+      >
         <div className={classes.content}>{this.props.children}</div>
       </div>
     );
@@ -25,11 +38,16 @@ class Modal extends Component {
     return (
       <Fragment>
         {ReactDOM.createPortal(
-          <Backdrop onClose={this.props.onClose} />,
+          <Backdrop
+            currencyswitcher={this.props.currencyswitcher}
+            onClose={this.props.onClose}
+          />,
           portalElement
         )}
         {ReactDOM.createPortal(
-          <ModalOverlay>{this.props.children}</ModalOverlay>,
+          <ModalOverlay currencyswitcher={this.props.currencyswitcher}>
+            {this.props.children}
+          </ModalOverlay>,
           portalElement
         )}
       </Fragment>

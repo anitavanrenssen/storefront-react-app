@@ -192,14 +192,16 @@ class ProductAttributes extends Component {
                             !cartModalStyle &&
                             !cartStyle &&
                             attribute.type === "text" &&
-                            Object.hasOwn(
-                              this.state.selectedAttributes,
-                              attribute.id
-                            ) &&
-                            Object.values(
-                              this.state.selectedAttributes
-                            ).includes(item.id)
-                              ? classes.activetext
+                            this.state.selectedAttributes[attribute.id] ===
+                              item.id
+                              ? // Object.hasOwn(
+                                //   this.state.selectedAttributes,
+                                //   attribute.id
+                                // ) &&
+                                // Object.values(
+                                //   this.state.selectedAttributes
+                                // ).includes(item.id)
+                                classes.activetext
                               : ""
                           }
                            ${
@@ -210,15 +212,17 @@ class ProductAttributes extends Component {
                            }
                            ${
                              attribute.type === "swatch" &&
-                             item.value === "#FFFFFF" && 
-                             Object.hasOwn(
-                              this.state.selectedAttributes,
-                              attribute.id
-                            ) &&
-                            Object.values(
-                              this.state.selectedAttributes
-                            ).includes(item.id)
-                               ? classes.activewhiteswatchbutton
+                             item.value === "#FFFFFF" &&
+                             this.state.selectedAttributes[attribute.id] ===
+                               item.id
+                               ? //  Object.hasOwn(
+                                 //    this.state.selectedAttributes,
+                                 //    attribute.id
+                                 //  ) &&
+                                 //  Object.values(
+                                 //    this.state.selectedAttributes
+                                 //  ).includes(item.id)
+                                 classes.activewhiteswatchbutton
                                : ""
                            }
                          

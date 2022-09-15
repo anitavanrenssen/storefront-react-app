@@ -9,6 +9,10 @@
   height: 190px;
 }
 
+.modalgallerycontainer {
+  height: auto;
+}
+
 .carouselcontainer img,
 .modalcarouselcontainer img {
   width: 100%;

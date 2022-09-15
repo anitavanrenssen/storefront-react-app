@@ -1,7 +1,16 @@
-.attr {
+/* .attr {
   display: flex;
   flex-direction: column;
-}
+} */
+
+/* .attrblock {
+  width: auto;
+  height: auto;
+} */
+
+/* .modalattr {
+  padding-bottom: 40px;
+} */
 
 .attrheading {
   font-family: "Roboto Condensed";
@@ -90,6 +99,10 @@
   gap: 12px;
   margin-bottom: 38px;
 }
+
+/* .sizebuttons:last-child {
+  margin-bottom: 0;
+} */
 
 .modalsizebuttons {
   display: flex;

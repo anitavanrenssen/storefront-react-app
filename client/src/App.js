@@ -57,18 +57,26 @@ class App extends Component {
     this.setState({ category: category });
   }
 
+  // if (this.state.showCart) {
+  //   document.body.style.overflow = "hidden";
+  // }
+
   render() {
     return (
       <ApolloProvider client={client}>
         <CartProvider>
           <CurrencyProvider>
             {this.state.showCart && (
-              <CartModal onClose={this.hideCartHandler.bind(this)} />
+              <CartModal
+                onClose={this.hideCartHandler.bind(this)}
+                showCart={this.state.showCart}
+              />
             )}
             {this.state.showCurrencySwitcher && (
               <HeaderCurrencySwitcher
-                show={this.state.showCurrencySwitcher}
-                onClickOutside={this.hideCurrencySwitcherHandler.bind(this)}
+                // show={this.state.showCurrencySwitcher}
+                // onClickOutside={this.hideCurrencySwitcherHandler.bind(this)}
+                onClose={this.hideCurrencySwitcherHandler.bind(this)}
                 onClick={this.hideCurrencySwitcherHandler.bind(this)}
               />
             )}

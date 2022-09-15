@@ -28,16 +28,27 @@ class ProductDetails extends Component {
   addItemHandler(product) {
     let attr = JSON.parse(localStorage.getItem("attr-key"));
 
-    this.context.addItem({
-      id: product.id + JSON.stringify(attr),
-      itemName: product.name,
-      gallery: product.gallery,
-      selectedAttributes: attr,
-      attributes: product.attributes,
-      prices: product.prices,
-      brand: product.brand,
-      qty: 1,
-    });
+    if (product.attributes.length > 0 && attr && Object.keys(attr).length > 0) {
+      this.context.addItem({
+        id: product.id + JSON.stringify(attr),
+        itemName: product.name,
+        gallery: product.gallery,
+        selectedAttributes: attr,
+        attributes: product.attributes,
+        prices: product.prices,
+        brand: product.brand,
+        qty: 1,
+      });
+    } else if (product.attributes.length === 0) {
+      this.context.addItem({
+        id: product.id + "[]",
+        itemName: product.name,
+        gallery: product.gallery,
+        prices: product.prices,
+        brand: product.brand,
+        qty: 1,
+      });
+    }
   }
 
   render() {

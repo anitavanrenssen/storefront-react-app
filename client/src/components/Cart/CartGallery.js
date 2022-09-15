@@ -27,7 +27,7 @@ class CartGallery extends Component {
   render() {
     const { gallery, name, cartModalStyle } = this.props;
     return (
-      <div>
+      <div className={cartModalStyle && classes.modalgallerycontainer}>
         <div
           className={`${
             cartModalStyle

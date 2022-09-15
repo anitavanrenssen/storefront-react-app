@@ -39,9 +39,7 @@
 }
 
 .itemdetailsamount {
-  display: flex;
-  justify-content: space-between;
-  flex-grow: auto;
+  height: auto;
 }
 
 .amountcontainer,
@@ -96,13 +94,21 @@
 .modalamountgallery {
   display: flex;
   gap: 8px;
+  height: auto;
 }
 
 .modalcartitem {
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
+  padding: 0 1px;
+  /* padding: 20px 0; */
+  /* height: 300px; */
   /* width: 293px; */
+}
+
+.modalcartitemlength {
+  min-height: 265px;
 }
 
 .modalname,

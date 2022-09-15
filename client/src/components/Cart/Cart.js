@@ -11,7 +11,6 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.context;
-    console.log(cart);
 
     const numberOfCartItems = cart.reduce((curNumber, item) => {
       return curNumber + item.qty;

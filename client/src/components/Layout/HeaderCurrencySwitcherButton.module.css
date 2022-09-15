@@ -6,6 +6,7 @@
   background: #fff;
   cursor: pointer;
   padding: 8px 0 8px 0;
+  z-index: 100;
 }
 
 .symbol {
