@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import classes from "./Cart.module.css";
+
 import CartList from "./CartList";
-import { CartContext } from "../../store/contexts";
-import { CurrencyContext } from "../../store/contexts";
 import Button from "../UI/Button";
 import CartTotal from "./CartTotal";
+
+import { CartContext } from "../../store/contexts";
+import { CurrencyContext } from "../../store/contexts";
+
+import classes from "./Cart.module.css";
 
 class Cart extends Component {
   static contextType = CartContext;

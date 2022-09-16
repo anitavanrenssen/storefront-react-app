@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CartIcon from "../Cart/CartIcon";
+import { ReactComponent as CartIcon } from "../../assets/carticon-header.svg";
 import classes from "./HeaderCartButton.module.css";
 import { CartContext } from "../../store/contexts";
 

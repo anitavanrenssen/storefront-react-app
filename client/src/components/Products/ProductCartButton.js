@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-import CartIconWhite from "../Cart/CartIconWhite";
+import { ReactComponent as CartIcon } from "../../assets/carticon-product.svg";
 import classes from "./ProductCartButton.module.css";
 
 class ProductCartButton extends Component {
@@ -11,7 +10,7 @@ class ProductCartButton extends Component {
         onClick={this.props.onClick}
         disabled={!this.props.inStock}
       >
-        <CartIconWhite />
+        <CartIcon />
       </button>
     );
   }
