@@ -33,18 +33,14 @@ class CartModal extends Component {
   // }
 
   render() {
-    const { cart } = this.context;
-
-    const numberOfCartItems = cart.reduce((curNumber, item) => {
-      return curNumber + item.qty;
-    }, 0);
+    const { cart, totalCartItems } = this.context;
 
     return (
       <Modal onClose={this.props.onClose}>
         <div className={classes.modalheading}>
           <span className={classes.bagheading}>My Bag, </span>
           <span className={classes.modalitemamount}>
-            {numberOfCartItems} {numberOfCartItems === 1 ? "item" : "items"}
+            {totalCartItems} {totalCartItems === 1 ? "item" : "items"}
           </span>
         </div>
         <div className={classes.cartlist}>
@@ -59,7 +55,7 @@ class CartModal extends Component {
                   <CartTotal
                     cart={cart}
                     currency={currency}
-                    quantity={numberOfCartItems}
+                    quantity={totalCartItems}
                     cartModalStyle={true}
                   />
                 )}

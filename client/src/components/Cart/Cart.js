@@ -13,11 +13,7 @@ class Cart extends Component {
   static contextType = CartContext;
 
   render() {
-    const { cart } = this.context;
-
-    const numberOfCartItems = cart.reduce((curNumber, item) => {
-      return curNumber + item.qty;
-    }, 0);
+    const { cart, totalCartItems } = this.context;
 
     return (
       <div className={classes.containercart}>
@@ -39,7 +35,7 @@ class Cart extends Component {
                     <CartTotal
                       cart={cart}
                       currency={currency}
-                      quantity={numberOfCartItems}
+                      quantity={totalCartItems}
                       cartStyle={true}
                     />
                   )}

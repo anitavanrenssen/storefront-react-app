@@ -8,19 +8,10 @@ class CartProvider extends Component {
     super();
     this.state = {
       cart: [],
-      totalAmount: 0,
     };
   }
 
-  updatedTotalAmount(amount) {
-    this.setState({ totalAmount: amount });
-  }
-
   addToCartHandler(item) {
-    console.log(item);
-    // const updatedTotalAmount =
-    //   this.state.totalAmount + item.prices[0].amount * item.qty;
-
     const existingCartItemIndex = this.state.cart.findIndex(
       (cartItem) => cartItem.id === item.id
     );
@@ -47,9 +38,6 @@ class CartProvider extends Component {
     );
     const existingItem = this.state.cart[existingCartItemIndex];
 
-    // const updatedTotalAmount =
-    //   this.state.totalAmount - existingItem.prices[0].amount;
-
     let updatedItems;
     if (existingItem.qty === 1) {
       updatedItems = this.state.cart.filter((item) => item.id !== id);
@@ -69,19 +57,20 @@ class CartProvider extends Component {
     if (localStorage.getItem(SHOPPING_CART_KEY)) {
       let data = JSON.parse(localStorage.getItem(SHOPPING_CART_KEY));
       let cart = data.cart;
-      let totalAmount = data.totalAmount;
       this.setState({
         cart: cart,
-        totalAmount: totalAmount,
       });
     }
   }
 
   render() {
+    const cartItems = this.state.cart.reduce((curNumber, item) => {
+      return curNumber + item.qty;
+    }, 0);
+
     const cartContext = {
       cart: this.state.cart,
-      totalAmount: this.state.totalAmount,
-      updateTotalAmount: this.updatedTotalAmount.bind(this),
+      totalCartItems: cartItems,
       addItem: this.addToCartHandler.bind(this),
       removeItem: this.removeFromCartHandler.bind(this),
     };
