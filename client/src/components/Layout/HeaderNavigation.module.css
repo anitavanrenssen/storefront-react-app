@@ -1,16 +1,14 @@
 .nav {
   margin-top: 28px;
   width: 204px;
-  /* height: 52px; */
 }
 
-.navbtns {
+.nav-buttons {
   display: flex;
-  /* gap: 30px; */
   list-style-type: none;
 }
 
-.navbtn {
+.nav-button {
   text-transform: uppercase;
   font-weight: 400;
   font-size: 16px;
@@ -20,16 +18,10 @@
   text-decoration: none;
   color: #1d1f22;
 }
-.navbtn:hover {
+.nav-button:hover {
   cursor: pointer;
   color: #5ece7b;
 }
-
-/* .navbtn:active {
-  color: #5ece7b;
-  border-bottom: 2px solid #5ece7b;
-  font-weight: 600;
-} */
 
 .active {
   color: #5ece7b;

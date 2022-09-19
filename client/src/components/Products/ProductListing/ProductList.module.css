@@ -1,16 +1,13 @@
 .title {
-  font-style: normal;
   font-weight: 400;
   font-size: 42px;
   margin-top: 160px;
   margin-left: 101px;
-  color: #1d1f22;
   text-transform: capitalize;
 }
 
 .products {
   max-width: 1238px;
-  /* margin-top: 103px; */
   margin: 103px auto 191px auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

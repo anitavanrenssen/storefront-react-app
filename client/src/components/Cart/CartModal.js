@@ -1,12 +1,15 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+
 import Modal from "../UI/Modal";
 import CartList from "./CartList";
-import classes from "./CartModal.module.css";
-import { CartContext } from "../../store/contexts";
-import { CurrencyContext } from "../../store/contexts";
 import CartTotal from "./CartTotal";
 import Button from "../UI/Button";
+
+import { CartContext } from "../../store/contexts";
+import { CurrencyContext } from "../../store/contexts";
+
+import classes from "./CartModal.module.css";
 
 class CartModal extends Component {
   static contextType = CartContext;
@@ -28,22 +31,18 @@ class CartModal extends Component {
     window.onscroll = function () {};
   }
 
-  // checkOutHandler() {
-  //   alert("Checking out...");
-  // }
-
   render() {
     const { cart, totalCartItems } = this.context;
 
     return (
       <Modal onClose={this.props.onClose}>
-        <div className={classes.modalheading}>
-          <span className={classes.bagheading}>My Bag, </span>
-          <span className={classes.modalitemamount}>
+        <div className={classes["modal-heading"]}>
+          <span className={classes["bag-heading"]}>My Bag, </span>
+          <span className={classes["items-amount"]}>
             {totalCartItems} {totalCartItems === 1 ? "item" : "items"}
           </span>
         </div>
-        <div className={classes.cartlist}>
+        <div className={classes["cart-list"]}>
           <CartList cart={cart} cartModalStyle={true} />
         </div>
         <div className={classes.total}>
@@ -64,13 +63,13 @@ class CartModal extends Component {
           </CartContext.Consumer>
         </div>
 
-        <div className={classes.cartmodalbuttons}>
+        <div className={classes["cart-modal-buttons"]}>
           <Link
             to="/cart"
-            className={classes.viewbaglink}
+            className={classes["view-bag-link"]}
             onClick={this.props.onClose}
           >
-            <button className={classes.cartmodalviewbagbutton}>View Bag</button>
+            <button className={classes["view-bag-button"]}>View Bag</button>
           </Link>
 
           <Button

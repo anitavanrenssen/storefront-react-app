@@ -12,4 +12,9 @@ export const CurrencyContext = React.createContext({
   changeCurrency: () => {},
 });
 
+export const CategoryContext = React.createContext({
+  category: "",
+  changeCategory: () => {},
+});
+
 export const CombinedContext = React.createContext({});

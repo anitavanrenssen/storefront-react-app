@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+
 import { gql } from "graphql-tag";
 import { Query } from "@apollo/client/react/components";
-import classes from "./CurrencySymbol.module.css";
+
 import { CurrencyContext } from "../../store/contexts";
+
+import classes from "./CurrencySymbol.module.css";
 
 const CURRENCIES_QUERY = gql`
   {
@@ -16,20 +19,22 @@ const CURRENCIES_QUERY = gql`
 class CurrencySymbol extends Component {
   static contextType = CurrencyContext;
 
-  render() {
-    const selectedCurrency = this.context.currency;
+  // componentDidMount() {
+  //   if (this.context.currency === "") {
+  //     this.context.changeCurrency(this.props.currencies[0].label);
+  //   }
+  // }
 
+  render() {
     return (
       <Query query={CURRENCIES_QUERY}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error! ${error.message}</p>;
           const { currencies } = data;
-
           const filteredCurrency = currencies.filter((currency) => {
-            return currency.label === selectedCurrency;
+            return currency.label === this.context.currency;
           });
-
           return (
             <span
               className={`${

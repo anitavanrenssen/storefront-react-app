@@ -1,39 +1,36 @@
 import React, { Component } from "react";
-import Button from "../../UI/Button";
+
 import ProductAttributes from "./ProductAttributes";
+import Button from "../../UI/Button";
+
 import { CartContext } from "../../../store/contexts";
+
 import parse from "html-react-parser";
 import DOMPurify from "dompurify";
 
 import classes from "./ProductDetails.module.css";
 
 class ProductDetails extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     selectedAttributes: [],
-  //   };
-  // }
-
   static contextType = CartContext;
 
   addToCartHandler(selectedAttributes) {
-    // this.setState((curState) => {
-    //   return { selectedAttributes: selectedAttributes.selectedAttributes };
-    // });
-    let attr = selectedAttributes.selectedAttributes;
-    localStorage.setItem("attr-key", JSON.stringify(attr));
+    let attributeSelection = selectedAttributes.selectedAttributes;
+    localStorage.setItem("attr-key", JSON.stringify(attributeSelection));
   }
 
   addItemHandler(product) {
-    let attr = JSON.parse(localStorage.getItem("attr-key"));
+    let attributeSelection = JSON.parse(localStorage.getItem("attr-key"));
 
-    if (product.attributes.length > 0 && attr && Object.keys(attr).length > 0) {
+    if (
+      product.attributes.length > 0 &&
+      attributeSelection &&
+      Object.keys(attributeSelection).length > 0
+    ) {
       this.context.addItem({
-        id: product.id + JSON.stringify(attr),
+        id: product.id + JSON.stringify(attributeSelection),
         itemName: product.name,
         gallery: product.gallery,
-        selectedAttributes: attr,
+        selectedAttributes: attributeSelection,
         attributes: product.attributes,
         prices: product.prices,
         brand: product.brand,
@@ -70,8 +67,8 @@ class ProductDetails extends Component {
     return (
       <div>
         <div>
-          <h2 className={classes.brandheading}>{product.brand}</h2>
-          <h3 className={classes.nameheading}>{product.name}</h3>
+          <h2 className={classes["brand-heading"]}>{product.brand}</h2>
+          <h3 className={classes["name-heading"]}>{product.name}</h3>
         </div>
         {product.attributes.length > 0 && (
           <ProductAttributes
@@ -81,7 +78,7 @@ class ProductDetails extends Component {
           />
         )}
         <div>
-          <h4 className={classes.attrheading}>Price:</h4>
+          <h4 className={classes["price-heading"]}>Price:</h4>
           <div className={classes.price}>
             {filteredCurrency[0].currency.symbol}
             {filteredCurrency[0].amount}

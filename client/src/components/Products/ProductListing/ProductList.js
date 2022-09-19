@@ -1,11 +1,15 @@
 import { Component } from "react";
+
 import { gql } from "graphql-tag";
 import { Query } from "@apollo/client/react/components";
 
 import ProductItem from "./ProductItem";
+
+import { CurrencyContext } from "../../../store/contexts";
+import { CartContext } from "../../../store/contexts";
+import { CategoryContext } from "../../../store/contexts";
+
 import classes from "./ProductList.module.css";
-import { CurrencyContext } from "../../store/contexts";
-import { CartContext } from "../../store/contexts";
 
 const PRODUCTS_QUERY = gql`
   {
@@ -41,16 +45,14 @@ const PRODUCTS_QUERY = gql`
 `;
 
 class ProductList extends Component {
-  // static contextType = CurrencyContext;
+  static contextType = CategoryContext;
 
   render() {
-    let categoryFilter = this.props.category;
-
-    // const { currency } = this.context;
+    const { selectedCategory } = this.context;
 
     return (
       <div>
-        <h1 className={classes.title}>{categoryFilter}</h1>
+        <h1 className={classes.title}>{selectedCategory}</h1>
         <div className={classes.products}>
           <CartContext.Consumer>
             {(cart) => (
@@ -63,7 +65,7 @@ class ProductList extends Component {
                       const { categories } = data;
 
                       const filteredCategory = categories.filter((category) => {
-                        return category.name === categoryFilter;
+                        return category.name === selectedCategory;
                       });
                       return filteredCategory[0].products.map((product) => (
                         <ProductItem

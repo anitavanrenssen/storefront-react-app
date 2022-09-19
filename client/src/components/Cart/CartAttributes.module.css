@@ -1,183 +1,134 @@
-/* .attr {
-  display: flex;
-  flex-direction: column;
-} */
-
-/* .attrblock {
-  width: auto;
-  height: auto;
-} */
-
-/* .modalattr {
-  padding-bottom: 40px;
-} */
-
-.attrheading {
+.attribute-heading {
   font-family: "Roboto Condensed";
   font-style: normal;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 18px;
   line-height: 18px;
-  color: #1d1f22;
   margin-bottom: 8px;
 }
 
-.swatchbutton {
+.swatch-button {
   width: 32px;
   height: 32px;
   border: none;
-  /* padding: 2px; */
-  /* margin-right: 8px; */
 }
 
-.modalswatchbutton {
+.modal-swatch-button {
   width: 16px;
   height: 16px;
   border: none;
 }
 
-.activeswatch {
+.active-swatch {
   cursor: pointer;
   border: 1px solid #fff !important;
   box-shadow: 0 0 0 1px #5ece7b;
 }
 
-.sizebutton {
+.text-button {
   width: 63px;
   height: 45px;
   border: 1px solid #1d1f22;
   background: #fff;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-.sizebutton[disabled] {
+.text-button[disabled] {
   opacity: 0.7;
 }
 
-.modalsizebutton {
+.modal-text-button {
   width: 24px;
   height: 24px;
-
-  /* font-family: "Source Sans Pro"; */
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 160%;
   border: 1px solid #1d1f22;
   background: #fff;
-
-  /* display: flex;
-  align-items: center;
-  text-align: center; */
 }
 
-.modalattrbutton {
+.modal-attribute-button {
   padding: 0 4px 0 4px;
   height: 24px;
-
-  /* font-family: "Source Sans Pro"; */
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 160%;
   border: 1px solid #1d1f22;
   background: #fff;
-
   display: flex;
   align-items: center;
   text-align: center;
 }
 
-.activetext {
+.active-text {
   background: #1d1f22;
   color: #fff;
   cursor: pointer;
 }
 
-.sizebuttons {
+.text-buttons {
   display: flex;
   gap: 12px;
   margin-bottom: 38px;
 }
 
-/* .sizebuttons:last-child {
-  margin-bottom: 0;
-} */
-
-.modalsizebuttons {
+.modal-text-buttons {
   display: flex;
   gap: 8px;
   margin: 8px 0 8px 0;
 }
 
-.swatchbuttons {
+.swatch-buttons {
   display: flex;
   gap: 8px;
   margin-bottom: 38px;
 }
-.modalswatchbuttons {
+.modal-swatch-buttons {
   display: flex;
   gap: 8px;
   margin: 8px 0 8px 0;
 }
 
-.modalattrheading {
-  font-family: "Raleway";
-  font-style: normal;
+.modal-attribute-heading {
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   color: #1d1f22;
 }
 
-.swatchbutton[disabled] {
+.swatch-button[disabled] {
   cursor: auto;
   pointer-events: none;
 }
 
-/* .swatchbutton[disabled]:hover {
-  border: none !important;
-} */
-
-.sizebutton[disabled] {
+.text-button[disabled] {
   cursor: auto;
-  /* opacity: 0.7;
-  color: #1d1f22;
-  border: 1px solid rgb(29, 31, 34, 0.7); */
   pointer-events: none;
 }
 
-/* .sizebutton[disabled]:hover {
-  background: #fff;
-  color: #1d1f22;
-} */
-
-.whiteswatchbutton {
+.white-swatch-button {
   border: 1px solid #1d1f22;
 }
 
-/* .whiteswatchbutton[disabled]:hover {
-  border: 1px solid #1d1f22 !important;
-} */
-
-.selectedcartattribute {
+.selected-cart-attribute {
   color: #fff;
   background: #1d1f22;
 }
 
-.selectedswatchattribute {
+.selected-swatch-attribute {
   border: 1px solid #fff !important;
   box-shadow: 0 0 0 1px #5ece7b;
 }
 
-.activewhiteswatchbutton {
+.active-white-swatch-button {
   width: 31px !important;
   height: 31px !important;
   border: 1px solid #1d1f22 !important;
   box-shadow: 0 0 0 1px #5ece7b !important;
 }
 
-.modalactivewhiteswatchbutton {
+.modal-active-white-swatch-button {
   width: 15px !important;
   height: 15px !important;
   border: 1px solid #1d1f22 !important;

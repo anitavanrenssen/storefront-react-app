@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ReactComponent as GalleryArrow } from "../../assets/gallery-arrow.svg";
 import classes from "./CartGallery.module.css";
 
 class CartGallery extends Component {
@@ -27,55 +28,27 @@ class CartGallery extends Component {
   render() {
     const { gallery, name, cartModalStyle } = this.props;
     return (
-      <div className={cartModalStyle && classes.modalgallerycontainer}>
+      <div className={cartModalStyle && classes["modal-gallery-container"]}>
         <div
           className={`${
             cartModalStyle
-              ? classes.modalcarouselcontainer
-              : classes.carouselcontainer
+              ? classes["modal-carousel-container"]
+              : classes["carousel-container"]
           }`}
         >
           {!cartModalStyle && gallery.length > 1 && (
             <div>
               <button
-                className={classes.arrowleft}
+                className={classes["arrow-left"]}
                 onClick={this.goToPreviousHandler.bind(this)}
               >
-                <svg
-                  width="5.63"
-                  height="11.24"
-                  viewBox="0 0 8 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0.75 1.06808L6.375 6.68711L0.75 12.3062"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <GalleryArrow />
               </button>
               <button
-                className={classes.arrowright}
+                className={classes["arrow-right"]}
                 onClick={this.goToNextHandler.bind(this)}
               >
-                <svg
-                  width="5.63"
-                  height="11.24"
-                  viewBox="0 0 8 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0.75 1.06808L6.375 6.68711L0.75 12.3062"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <GalleryArrow />
               </button>
             </div>
           )}

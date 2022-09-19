@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { ReactComponent as CartIcon } from "../../assets/carticon-product.svg";
+import { ReactComponent as CartIcon } from "../../../assets/cart-icon-product.svg";
+
 import classes from "./ProductCartButton.module.css";
 
 class ProductCartButton extends Component {

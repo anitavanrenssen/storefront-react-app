@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { CartContext } from "../../store/contexts";
-import classes from "./CartList.module.css";
+
 import CartItem from "./CartItem";
+
+import { CartContext } from "../../store/contexts";
+
+import classes from "./CartList.module.css";
 
 class CartList extends Component {
   static contextType = CartContext;
@@ -17,7 +20,9 @@ class CartList extends Component {
     const { cart, cartModalStyle } = this.props;
     return (
       <div
-        className={cartModalStyle && cart.length > 2 ? classes.cartlist : ""}
+        className={
+          cartModalStyle && cart.length > 2 ? classes["cart-list"] : ""
+        }
       >
         {cart &&
           cart.length > 0 &&

@@ -6,6 +6,7 @@ import { Query } from "@apollo/client/react/components";
 
 import ProductGallery from "./ProductGallery";
 import ProductDetails from "./ProductDetails";
+
 import { CurrencyContext } from "../../../store/contexts";
 
 const PRODUCT_QUERY = gql`
@@ -55,7 +56,7 @@ class ProductDescription extends Component {
             const { product } = data;
 
             return (
-              <div className={classes.productdescription}>
+              <div className={classes["product-description"]}>
                 <ProductGallery
                   gallery={product.gallery}
                   name={product.name}

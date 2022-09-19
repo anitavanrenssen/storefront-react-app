@@ -1,10 +1,14 @@
 import { Component } from "react";
+
 import CurrencySymbol from "../UI/CurrencySymbol";
+
 import classes from "./CartTotal.module.css";
 
 class CartTotal extends Component {
   render() {
-    const filteredCurrency = this.props.cart.cart.map((product) => {
+    const { cart, quantity, cartStyle, cartModalStyle } = this.props;
+
+    const filteredCurrency = cart.cart.map((product) => {
       return {
         qty: product.qty,
         price: product.prices.find((price) => {
@@ -21,17 +25,15 @@ class CartTotal extends Component {
     const taxAmount = (totalAmount * 0.21).toFixed(2);
 
     return (
-      <div className={this.props.cartStyle && classes.total}>
-        {!this.props.cartModalStyle && (
+      <div className={cartStyle && classes.total}>
+        {!cartModalStyle && (
           <p>
             <CurrencySymbol cartStyle={true} />
             {taxAmount}
           </p>
         )}
-        {!this.props.cartModalStyle && (
-          <p>{this.props.cart.cart ? this.props.quantity : 0}</p>
-        )}
-        <p className={this.props.cartModalStyle && classes.totalamount}>
+        {!cartModalStyle && <p>{cart.cart ? quantity : 0}</p>}
+        <p className={cartModalStyle && classes["total-amount"]}>
           <CurrencySymbol />
           {totalAmount}
         </p>

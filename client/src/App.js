@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import CartProvider from "./store/CartProvider";
 import CurrencyProvider from "./store/CurrencyProvider";
+import CategoryProvider from "./store/CategoryProvider";
 
 // components
 import Header from "./components/Layout/Header";
@@ -25,7 +26,6 @@ class App extends Component {
     this.state = {
       showCart: false,
       showCurrencySwitcher: false,
-      category: "all",
     };
   }
 
@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   hideCartHandler() {
-    this.setState((curState) => {
+    this.setState(() => {
       return { showCart: false };
     });
   }
@@ -48,18 +48,10 @@ class App extends Component {
   }
 
   hideCurrencySwitcherHandler() {
-    this.setState((curState) => {
+    this.setState(() => {
       return { showCurrencySwitcher: false };
     });
   }
-
-  getCategoryHandler(category) {
-    this.setState({ category: category });
-  }
-
-  // if (this.state.showCart) {
-  //   document.body.style.overflow = "hidden";
-  // }
 
   render() {
     return (
@@ -74,29 +66,26 @@ class App extends Component {
             )}
             {this.state.showCurrencySwitcher && (
               <HeaderCurrencySwitcher
-                // show={this.state.showCurrencySwitcher}
-                // onClickOutside={this.hideCurrencySwitcherHandler.bind(this)}
                 onClose={this.hideCurrencySwitcherHandler.bind(this)}
                 onClick={this.hideCurrencySwitcherHandler.bind(this)}
               />
             )}
-            <Header
-              onShowCart={this.showCartHandler.bind(this)}
-              show={this.state.showCurrencySwitcher}
-              onShowCurrencySwitcher={this.showCurrencySwitcherHandler.bind(
-                this
-              )}
-              getCategory={this.getCategoryHandler.bind(this)}
-            />
-            <Switch>
-              <Route exact path="/">
-                <CategoryPage category={this.state.category} />
-              </Route>
+            <CategoryProvider>
+              <Header
+                onShowCart={this.showCartHandler.bind(this)}
+                show={this.state.showCurrencySwitcher}
+                onShowCurrencySwitcher={this.showCurrencySwitcherHandler.bind(
+                  this
+                )}
+              />
+              <Switch>
+                <Route exact path="/" component={CategoryPage} />
 
-              <Route exact path="/product/:id" component={ProductPage} />
+                <Route exact path="/product/:id" component={ProductPage} />
 
-              <Route exact path="/cart" component={CartPage} />
-            </Switch>
+                <Route exact path="/cart" component={CartPage} />
+              </Switch>
+            </CategoryProvider>
           </CurrencyProvider>
         </CartProvider>
       </ApolloProvider>

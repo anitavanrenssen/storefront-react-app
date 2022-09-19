@@ -1,4 +1,4 @@
-.containercart {
+.cart-container {
   margin: 160px 100px;
 }
 
@@ -12,26 +12,20 @@
   color: #1d1f22;
   margin-bottom: 55px;
 }
-.totalcontainer {
-  margin: 32px 0 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
-.carttotals {
+.cart-totals {
   display: flex;
   gap: 6px;
   margin: 32px 0 16px 0;
 }
 
-.carttotal {
+.cart-total-headings {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.carttotal p {
+.cart-total-headings p {
   font-family: "Raleway";
   font-style: normal;
   font-weight: 400;
@@ -40,6 +34,6 @@
   color: #1d1f22;
 }
 
-.carttotal p:last-child {
+.cart-total-headings p:last-child {
   font-weight: 500;
 }

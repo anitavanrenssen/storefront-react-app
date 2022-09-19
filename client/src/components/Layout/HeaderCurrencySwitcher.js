@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+
 import { gql } from "graphql-tag";
 import { Query } from "@apollo/client/react/components";
-import { CurrencyContext } from "../../store/contexts";
-import classes from "./HeaderCurrencySwitcher.module.css";
+
+import HeaderCurrency from "./HeaderCurrency";
 import Modal from "../UI/Modal";
-// import HeaderCurrencySwitcherButton from "./HeaderCurrencySwitcherButton";
 
 const CURRENCIES_QUERY = gql`
   {
@@ -16,46 +16,11 @@ const CURRENCIES_QUERY = gql`
 `;
 
 class HeaderCurrencySwitcher extends Component {
-  static contextType = CurrencyContext;
-
-  // constructor(props) {
-  //   super(props);
-  //   this.ref = React.createRef();
-  //   this.clickOutsideHandler = this.clickOutsideHandler.bind(this);
-  // }
-
-  // clickOutsideHandler(event) {
-  //   if (
-  //     this.ref.current &&
-  //     !this.ref.current.contains(event.target)
-  //     // &&
-  //     // !this.ref.current.contains(<HeaderCurrencySwitcherButton />)
-  //   ) {
-  //     this.props.onClickOutside && this.props.onClickOutside();
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   document.addEventListener("click", this.clickOutsideHandler, true);
-  // }
-
-  // componentWillUnmount() {
-  //   document.removeEventListener("click", this.clickOutsideHandler, true);
-  // }
-
-  changeCurrencyHandler(e) {
-    this.context.changeCurrency(e.target.id);
-  }
-
   render() {
-    // if (!this.props.show) return null;
-
-    // const { currency } = this.context;
-
     return (
-      <Modal currencyswitcher={true} onClose={this.props.onClose}>
+      <Modal currencySwitcher={true} onClose={this.props.onClose}>
         <div>
-          <ul className={classes.dropdownlist} onClick={this.props.onClick}>
+          <ul onClick={this.props.onClick}>
             <Query query={CURRENCIES_QUERY}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
@@ -63,18 +28,12 @@ class HeaderCurrencySwitcher extends Component {
                 const { currencies } = data;
                 return currencies.map((currency, index) => {
                   return (
-                    <li
-                      className={`${classes.listitem} ${
-                        this.context.currency === currency.label &&
-                        classes.active
-                      }`}
+                    <HeaderCurrency
                       key={index}
-                      id={currency.label}
-                      onClick={this.changeCurrencyHandler.bind(this)}
-                    >
-                      <span>{currency.symbol}</span>
-                      <span>{currency.label}</span>
-                    </li>
+                      currencies={currencies}
+                      currency={currency}
+                      index={index}
+                    />
                   );
                 });
               }}

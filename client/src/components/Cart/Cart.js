@@ -16,13 +16,13 @@ class Cart extends Component {
     const { cart, totalCartItems } = this.context;
 
     return (
-      <div className={classes.containercart}>
+      <div className={classes["cart-container"]}>
         <h1 className={classes.heading}>Cart</h1>
-        <div className={classes.containercartlist}>
+        <div>
           <CartList cart={cart} cartStyle={true} />
         </div>
-        <div className={classes.carttotals}>
-          <div className={classes.carttotal}>
+        <div className={classes["cart-totals"]}>
+          <div className={classes["cart-total-headings"]}>
             <p>Tax 21%:</p>
             <p>Quantity:</p>
             <p>Total:</p>

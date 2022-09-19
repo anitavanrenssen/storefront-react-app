@@ -1,0 +1,25 @@
+.list-item {
+  width: 114px;
+  height: 45px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.list-item:hover {
+  cursor: pointer;
+  background: #eeeeee;
+}
+
+.list-item span {
+  pointer-events: none;
+}
+
+.active {
+  background: #eeeeee;
+}

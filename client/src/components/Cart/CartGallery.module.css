@@ -1,26 +1,26 @@
-.carouselcontainer {
+.carousel-container {
   width: 200px;
   height: 288px;
   position: relative;
 }
 
-.modalcarouselcontainer {
+.modal-carousel-container {
   width: 121px;
   height: 190px;
 }
 
-.modalgallerycontainer {
+.modal-gallery-container {
   height: auto;
 }
 
-.carouselcontainer img,
-.modalcarouselcontainer img {
+.carousel-container img,
+.modal-carousel-container img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.arrowright {
+.arrow-right {
   height: 24px;
   width: 24px;
   background: rgba(0, 0, 0, 0.73);
@@ -34,7 +34,7 @@
   border: none;
 }
 
-.arrowleft {
+.arrow-left {
   height: 24px;
   width: 24px;
   background: rgba(0, 0, 0, 0.73);

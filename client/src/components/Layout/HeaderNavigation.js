@@ -1,18 +1,13 @@
 import React, { Component } from "react";
-import gql from "graphql-tag";
-import { Query } from "@apollo/client/react/components";
 import { Link } from "react-router-dom";
+
+import { CategoryContext } from "../../store/contexts";
+
 import classes from "./HeaderNavigation.module.css";
 
-const CATEGORIES_QUERY = gql`
-  {
-    categories {
-      name
-    }
-  }
-`;
-
 class HeaderNavigation extends Component {
+  static contextType = CategoryContext;
+
   constructor() {
     super();
     this.state = {
@@ -20,37 +15,36 @@ class HeaderNavigation extends Component {
     };
   }
 
+  componentDidMount() {
+    this.context.changeCategory(this.props.categories[0].name);
+  }
+
   changeCategoryHandler(e) {
-    this.props.getCategory(e.target.innerHTML);
+    this.context.changeCategory(e.target.innerHTML);
     this.setState({ activeLink: +e.target.getAttribute("index") });
   }
 
   render() {
+    const { categories } = this.props;
+
     return (
       <nav className={classes.nav}>
-        <div className={classes.navbtns}>
-          <Query query={CATEGORIES_QUERY}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error! ${error.message}</p>;
-              const { categories } = data;
-              return categories.map((category, index) => {
-                return (
-                  <Link
-                    to="/"
-                    key={index}
-                    index={index}
-                    className={`${classes.navbtn} ${
-                      index === this.state.activeLink && classes.active
-                    }`}
-                    onClick={this.changeCategoryHandler.bind(this)}
-                  >
-                    {category.name}
-                  </Link>
-                );
-              });
-            }}
-          </Query>
+        <div className={classes["nav-buttons"]}>
+          {categories.map((category, index) => {
+            return (
+              <Link
+                to="/"
+                key={index}
+                index={index}
+                className={`${classes["nav-button"]} ${
+                  index === this.state.activeLink && classes.active
+                }`}
+                onClick={this.changeCategoryHandler.bind(this)}
+              >
+                {category.name}
+              </Link>
+            );
+          })}
         </div>
       </nav>
     );

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import classes from "./ProductAttributes.module.css";
+
 import { CartContext } from "../../../store/contexts";
+
+import classes from "./ProductAttributes.module.css";
 
 class ProductAttributes extends Component {
   static contextType = CartContext;
@@ -9,15 +11,12 @@ class ProductAttributes extends Component {
     super();
     this.state = {
       selectedAttributes: {},
-      cartAttributes: [],
     };
   }
 
   setSelectedItem(selectedAttributes) {
-    // console.log(selectedAttributes);
     const selectedItem = this.props.product.attributes.find((attribute) => {
       return attribute.items.every((item) => {
-        // console.log(item);
         return selectedAttributes[item.id] === item.displayValue;
       });
     });
@@ -25,15 +24,6 @@ class ProductAttributes extends Component {
     this.setState({
       selectedItem: selectedItem,
     });
-
-    // const selectedOption = this.state.selectedOption;
-
-    // for (const [key, value] of Object.entries(selectedAttributes)) {
-    //   this.setState((prevState) => ({
-    //     selectedOption: [...prevState.selectedOption, `${key}-${value}`],
-    //   }));
-    // }
-
     this.props.onAddToCart(this.state);
   }
 
@@ -48,10 +38,8 @@ class ProductAttributes extends Component {
     const selectedAttributesObj = this.props.product.attributes.reduce(
       (prev, curr, i) => {
         prev[curr.name] = curr.items[0].displayValue;
-
         return prev;
       },
-
       {}
     );
 
@@ -59,86 +47,23 @@ class ProductAttributes extends Component {
       selectedAttributesObj,
     });
     this.setSelectedItem(selectedAttributesObj);
-
-    let cartAttr = this.context.cart.map((item) => {
-      return item.selectedAttributes;
-    });
-
-    this.setState({ cartAttributes: cartAttr });
   }
 
   render() {
     const { product, cartModalStyle, cartStyle, inStock } = this.props;
-    // const { cart } = this.context;
-
-    // console.log(this.state.selectedAttributes);
-
-    // let res = this.state.cartAttributes.every((attr) => {
-    //   return (
-    //     Object.hasOwn(attr, product.attributes[0].id) &&
-    //     Object.values(attr).includes(product.attributes[0].items[0].id)
-    //   );
-    // });
-
-    // console.log(res);
-
-    // cart.map((item) => {
-    //   return Object.entries(item).map((attr) => {
-    //     return attr[0] === "selectedAttributes"
-    //       ? Object.entries(attr[1]).map((selattr) => {
-    //           return console.log(
-    //             selattr.includes("41") && selattr.includes("Size")
-    //           );
-    //         })
-    //       : item;
-    //   });
-    // });
-
-    // console.log(cart[0].selectedAttributes);
-
-    // let res = Object.hasOwn(cart[1].selectedAttributes, "Size");
-    // console.log(res);
-
-    // let ress = Object.values(cart[1].selectedAttributes).includes("42");
-    // console.log(ress);
-
-    // cart.map((cartItem) => {
-    //   return Object.hasOwn(cartItem.selectedAttributes);
-    // }) &&
-
-    // let result = cart.every((cartItem) => {
-    //   console.log(cartItem.selectedAttributes);
-    //   return cartItem.selectedAttributes ? cartItem.selectedAttributes : {};
-    // });
-
-    // let res = Object.hasOwn(
-    //   this.state.selectedAttributes,
-    //   product.attributes[0].id
-    // );
-
-    // console.log(product.attributes[0].id);
-    // console.log(result);
-    // console.log(res);
-
-    // console.log(
-    //   Object.entries(this.state.selectedAttributes).map((attr) => {
-    //     console.log(attr);
-    //     return attr.includes("Touch ID in keyboard", "No");
-    //   })
-    // );
 
     return (
       <div>
         {
-          <div className={classes.attr}>
+          <div className={classes.attributes}>
             {product.attributes.map((attribute) => {
               return (
-                <div key={attribute.id} className={classes.attrblock}>
+                <div key={attribute.id}>
                   <h4
                     className={`${
-                      this.props.cartModalStyle
-                        ? classes.modalattrheading
-                        : classes.attrheading
+                      cartModalStyle
+                        ? classes["modal-attribute-heading"]
+                        : classes["attribute-heading"]
                     }`}
                   >
                     {attribute.name}:
@@ -147,14 +72,14 @@ class ProductAttributes extends Component {
                     className={
                       cartModalStyle
                         ? attribute.type === "swatch"
-                          ? classes.modalswatchbuttons
-                          : classes.modalsizebuttons
+                          ? classes["modal-swatch-buttons"]
+                          : classes["modal-text-buttons"]
                         : attribute.type === "swatch"
-                        ? classes.swatchbuttons
-                        : classes.sizebuttons
+                        ? classes["swatch-buttons"]
+                        : classes["text-buttons"]
                     }
                   >
-                    {attribute.items.map((item, index) => {
+                    {attribute.items.map((item) => {
                       return (
                         <button
                           key={item.id}
@@ -165,27 +90,22 @@ class ProductAttributes extends Component {
                           className={`${
                             cartModalStyle
                               ? attribute.type === "swatch"
-                                ? classes.modalswatchbutton
+                                ? classes["modal-swatch-button"]
                                 : attribute.name !== "Size"
-                                ? classes.modalattrbutton
-                                : classes.modalsizebutton
+                                ? classes["modal-attribute-button"]
+                                : classes["modal-text-button"]
                               : attribute.type === "swatch"
-                              ? classes.swatchbutton
-                              : classes.sizebutton
+                              ? classes["swatch-button"]
+                              : classes["text-button"]
                           } 
                          
                           ${
                             !cartModalStyle &&
                             !cartStyle &&
-                            attribute.type === "swatch" &&
-                            Object.hasOwn(
-                              this.state.selectedAttributes,
-                              attribute.id
-                            ) &&
-                            Object.values(
-                              this.state.selectedAttributes
-                            ).includes(item.id)
-                              ? classes.activeswatch
+                            (attribute.type === "swatch") &
+                              (this.state.selectedAttributes[attribute.id] ===
+                                item.id)
+                              ? classes["active-swatch"]
                               : ""
                           } 
                           ${
@@ -194,20 +114,13 @@ class ProductAttributes extends Component {
                             attribute.type === "text" &&
                             this.state.selectedAttributes[attribute.id] ===
                               item.id
-                              ? // Object.hasOwn(
-                                //   this.state.selectedAttributes,
-                                //   attribute.id
-                                // ) &&
-                                // Object.values(
-                                //   this.state.selectedAttributes
-                                // ).includes(item.id)
-                                classes.activetext
+                              ? classes["active-text"]
                               : ""
                           }
                            ${
                              attribute.type === "swatch" &&
                              item.value === "#FFFFFF"
-                               ? classes.whiteswatchbutton
+                               ? classes["white-swatch-button"]
                                : ""
                            }
                            ${
@@ -215,14 +128,7 @@ class ProductAttributes extends Component {
                              item.value === "#FFFFFF" &&
                              this.state.selectedAttributes[attribute.id] ===
                                item.id
-                               ? //  Object.hasOwn(
-                                 //    this.state.selectedAttributes,
-                                 //    attribute.id
-                                 //  ) &&
-                                 //  Object.values(
-                                 //    this.state.selectedAttributes
-                                 //  ).includes(item.id)
-                                 classes.activewhiteswatchbutton
+                               ? classes["active-white-swatch-button"]
                                : ""
                            }
                          

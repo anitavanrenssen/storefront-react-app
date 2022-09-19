@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import classes from "./CartItem.module.css";
-// import ProductAttributes from "../Products/ProductDescription/ProductAttributes";
+
 import CartGallery from "./CartGallery";
-import { CurrencyContext } from "../../store/contexts";
 import CartAttributes from "./CartAttributes";
 import PlusMinusButton from "../UI/PlusMinusButton";
+
+import { CurrencyContext } from "../../store/contexts";
+
+import classes from "./CartItem.module.css";
 
 class CartItem extends Component {
   static contextType = CurrencyContext;
@@ -20,11 +22,10 @@ class CartItem extends Component {
     this.setState({
       selectedAttributes: selectedAttributes.selectedAttributes,
     });
-    // console.log(this.state.selectedAttributes);
   }
 
   render() {
-    const { product } = this.props;
+    const { product, cartModalStyle } = this.props;
 
     const filteredCurrency = product.prices.filter((currency) => {
       return currency.currency.label === this.context.currency;
@@ -33,37 +34,33 @@ class CartItem extends Component {
     return (
       <div
         className={`${
-          this.props.cartModalStyle ? classes.modalcartitem : classes.cartitem
+          cartModalStyle ? classes["modal-cart-item"] : classes["cart-item"]
         } ${
-          this.props.cartModalStyle &&
+          cartModalStyle &&
           product.attributes &&
           product.attributes.length > 2 &&
-          classes.modalcartitemlength
+          classes["modal-cart-item-length"]
         }`}
       >
-        <div className={classes.itemdetailsamount}>
-          <div
-            className={`${
-              this.props.cartModalStyle && classes.modalitemheading
-            }`}
-          >
+        <div>
+          <div className={`${cartModalStyle && classes["modal-item-heading"]}`}>
             <h4
               className={`${
-                this.props.cartModalStyle ? classes.modalbrand : classes.brand
+                cartModalStyle ? classes["modal-brand"] : classes["brand"]
               }`}
             >
               {product.brand}
             </h4>
             <h4
               className={`${
-                this.props.cartModalStyle ? classes.modalname : classes.name
+                cartModalStyle ? classes["modal-name"] : classes.name
               }`}
             >
               {product.itemName}
             </h4>
             <div
               className={`${
-                this.props.cartModalStyle ? classes.modalprice : classes.price
+                cartModalStyle ? classes["modal-price"] : classes.price
               }`}
             >
               {filteredCurrency[0].currency.symbol}
@@ -71,56 +68,53 @@ class CartItem extends Component {
             </div>
             {!product.attributes ||
               (product.attributes.length > 0 && (
-                // <ProductAttributes
-                //   product={product}
-                //   onAddToCart={this.addToCartHandler.bind(this)}
-                //   cartModalStyle={this.props.cartModalStyle}
-                //   cartStyle={this.props.cartStyle}
-                // />
                 <CartAttributes
                   product={product}
-                  cartModalStyle={this.props.cartModalStyle}
+                  cartModalStyle={cartModalStyle}
                 />
               ))}
           </div>
         </div>
         <div
           className={`${
-            this.props.cartModalStyle
-              ? classes.modalamountgallery
-              : classes.amountgallery
+            cartModalStyle
+              ? classes["modal-amount-gallery"]
+              : classes["amount-gallery"]
           }`}
         >
           <div
             className={`${
-              this.props.cartModalStyle
-                ? classes.modalamountcontainer
-                : classes.amountcontainer
+              cartModalStyle
+                ? classes["modal-amount-container"]
+                : classes["amount-container"]
             }`}
           >
-            <button className={classes.plusbutton} onClick={this.props.onAdd}>
+            <button
+              className={classes["plus-button"]}
+              onClick={this.props.onAdd}
+            >
               <div
                 className={
-                  this.props.cartModalStyle ? classes.modalplus : classes.plus
+                  cartModalStyle ? classes["modal-plus"] : classes.plus
                 }
               >
-                <PlusMinusButton cartModalStyle={this.props.cartModalStyle} />
+                <PlusMinusButton cartModalStyle={cartModalStyle} />
               </div>
 
-              <PlusMinusButton cartModalStyle={this.props.cartModalStyle} />
+              <PlusMinusButton cartModalStyle={cartModalStyle} />
             </button>
             <span>{product.qty}</span>
             <button
-              className={classes.minusbutton}
+              className={classes["minus-button"]}
               onClick={this.props.onRemove}
             >
-              <PlusMinusButton cartModalStyle={this.props.cartModalStyle} />
+              <PlusMinusButton cartModalStyle={cartModalStyle} />
             </button>
           </div>
           <CartGallery
             gallery={product.gallery}
             name={product.itemName}
-            cartModalStyle={this.props.cartModalStyle}
+            cartModalStyle={cartModalStyle}
           />
         </div>
       </div>

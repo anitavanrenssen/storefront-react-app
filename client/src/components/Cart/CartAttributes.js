@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import classes from "./CartAttributes.module.css";
+
 import { CartContext } from "../../store/contexts";
+
+import classes from "./CartAttributes.module.css";
 
 class CartAttributes extends Component {
   static contextType = CartContext;
@@ -12,24 +14,19 @@ class CartAttributes extends Component {
     let cartMap = cart.filter((cartItem) => {
       return cartItem.selectedAttributes === product.selectedAttributes;
     });
-    // console.log(cartMap);
 
     return (
-      <div className={`${
-        cartModalStyle
-          && classes.modalattr
-          
-      }`}>
+      <div>
         {
-          <div className={classes.attr}>
+          <div>
             {product.attributes.map((attribute) => {
               return (
-                <div key={attribute.id} className={classes.attrblock}>
+                <div key={attribute.id}>
                   <h4
                     className={`${
                       cartModalStyle
-                        ? classes.modalattrheading
-                        : classes.attrheading
+                        ? classes["modal-attribute-heading"]
+                        : classes["attribute-heading"]
                     }`}
                   >
                     {attribute.name}:
@@ -38,14 +35,14 @@ class CartAttributes extends Component {
                     className={
                       cartModalStyle
                         ? attribute.type === "swatch"
-                          ? classes.modalswatchbuttons
-                          : classes.modalsizebuttons
+                          ? classes["modal-swatch-buttons"]
+                          : classes["modal-text-buttons"]
                         : attribute.type === "swatch"
-                        ? classes.swatchbuttons
-                        : classes.sizebuttons
+                        ? classes["swatch-buttons"]
+                        : classes["text-buttons"]
                     }
                   >
-                    {attribute.items.map((item, index) => {
+                    {attribute.items.map((item) => {
                       return (
                         <button
                           key={item.id}
@@ -55,48 +52,32 @@ class CartAttributes extends Component {
                           className={`${
                             cartModalStyle
                               ? attribute.type === "swatch"
-                                ? classes.modalswatchbutton
+                                ? classes["modal-swatch-button"]
                                 : attribute.name !== "Size"
-                                ? classes.modalattrbutton
-                                : classes.modalsizebutton
+                                ? classes["modal-attribute-button"]
+                                : classes["modal-text-button"]
                               : attribute.type === "swatch"
-                              ? classes.swatchbutton
-                              : classes.sizebutton
+                              ? classes["swatch-button"]
+                              : classes["text-button"]
                           } 
                           ${
                             attribute.type === "text" &&
-                            // Object.hasOwn(
-                            //   cartMap[0].id,
-                            //   attribute.id
-                            // ) &&
-                            // Object.values(
-                            //   cartMap[0].selectedAttributes
-                            // ).includes(item.id)
                             cartMap[0].selectedAttributes[attribute.id] ===
                               item.id
-                              ? classes.selectedcartattribute
+                              ? classes["selected-cart-attribute"]
                               : ""
                           }
                           ${
                             attribute.type === "swatch" &&
-                            // Object.hasOwn(
-                            //   cartMap[0].selectedAttributes,
-                            //   attribute.id
-                            // ) &&
-                            // Object.values(
-                            //   cartMap[0].selectedAttributes
-                            // ).includes(item.id)
                             cartMap[0].selectedAttributes[attribute.id] ===
                               item.id
-                              ? classes.selectedswatchattribute
+                              ? classes["selected-swatch-attribute"]
                               : ""
                           }
-                          
-                          
                            ${
                              attribute.type === "swatch" &&
                              item.value === "#FFFFFF"
-                               ? classes.whiteswatchbutton
+                               ? classes["white-swatch-button"]
                                : ""
                            }
                            ${
@@ -104,15 +85,8 @@ class CartAttributes extends Component {
                              item.value === "#FFFFFF" &&
                              cartMap[0].selectedAttributes[attribute.id] ===
                                item.id &&
-                             //  Object.hasOwn(
-                             //    cartMap[0].selectedAttributes,
-                             //    attribute.id
-                             //  ) &&
-                             //  Object.values(
-                             //    cartMap[0].selectedAttributes
-                             //  ).includes(item.id) &&
                              cartModalStyle
-                               ? classes.modalactivewhiteswatchbutton
+                               ? classes["modal-active-white-swatch-button"]
                                : ""
                            }
                            ${
@@ -120,19 +94,10 @@ class CartAttributes extends Component {
                              item.value === "#FFFFFF" &&
                              cartMap[0].selectedAttributes[attribute.id] ===
                                item.id &&
-                             //  Object.hasOwn(
-                             //    cartMap[0].selectedAttributes,
-                             //    attribute.id
-                             //  ) &&
-                             //  Object.values(
-                             //    cartMap[0].selectedAttributes
-                             //  ).includes(item.id) &&
                              !cartModalStyle
-                               ? classes.activewhiteswatchbutton
+                               ? classes["active-white-swatch-button"]
                                : ""
-                           }
-                          
-                          `}
+                           }`}
                           style={{
                             background:
                               attribute.type === "swatch" && item.value,

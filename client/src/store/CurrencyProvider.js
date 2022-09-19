@@ -11,8 +11,8 @@ class CurrencyProvider extends Component {
     };
   }
 
-  changeCurrencyHandler(id) {
-    this.setState({ currency: id });
+  changeCurrencyHandler(label) {
+    this.setState({ currency: label });
   }
 
   componentDidUpdate() {

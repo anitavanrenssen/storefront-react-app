@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Card from "../UI/Card";
+
+import Card from "../../UI/Card";
 import ProductCartButton from "./ProductCartButton";
+
+import { CartContext } from "../../../store/contexts";
+
 import classes from "./ProductItem.module.css";
-import { CartContext } from "../../store/contexts";
 
 class ProductItem extends Component {
   static contextType = CartContext;
@@ -16,13 +19,13 @@ class ProductItem extends Component {
   }
 
   mouseEnterHandler() {
-    this.setState((curState) => {
+    this.setState(() => {
       return { showCartButton: true };
     });
   }
 
   mouseLeaveHandler() {
-    this.setState((curState) => {
+    this.setState(() => {
       return { showCartButton: false };
     });
   }
@@ -46,13 +49,13 @@ class ProductItem extends Component {
     return (
       <Card>
         <div
-          className={classes.productcard}
+          className={classes["product-card"]}
           onMouseEnter={this.mouseEnterHandler.bind(this)}
           onMouseLeave={this.mouseLeaveHandler.bind(this)}
         >
           <Link
             to={`/product/${this.props.product.id}`}
-            className={classes.productlink}
+            className={classes.link}
           >
             <div id={this.props.product.id} className={classes.item}>
               <div className={classes.image}>
@@ -61,13 +64,13 @@ class ProductItem extends Component {
                   alt={this.props.product.name}
                 />
                 {!this.props.product.inStock && (
-                  <div className={classes.outofstock}>Out of Stock</div>
+                  <div className={classes["out-of-stock"]}>Out of Stock</div>
                 )}
               </div>
 
               <div
                 className={`${classes.content} ${
-                  !this.props.product.inStock && classes.outofstockcontent
+                  !this.props.product.inStock && classes["out-of-stock-content"]
                 }`}
               >
                 <p className={classes.title}>
@@ -84,11 +87,7 @@ class ProductItem extends Component {
             this.state.showCartButton && (
               <ProductCartButton
                 inStock={this.props.product.inStock}
-                onClick={this.addToCartHandler.bind(
-                  this,
-
-                  this.props.product
-                )}
+                onClick={this.addToCartHandler.bind(this, this.props.product)}
               />
             )}
         </div>

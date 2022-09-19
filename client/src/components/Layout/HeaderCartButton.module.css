@@ -1,4 +1,4 @@
-.buttonbadge {
+.button-badge {
   padding: 8px 8px 8px 0;
   position: relative;
 }
@@ -25,10 +25,9 @@
   text-align: center;
 }
 
-.badgenumber {
+.badge-number {
   color: #fff;
   font-family: "Roboto";
-  font-style: normal;
   font-weight: 700;
   font-size: 14px;
 }

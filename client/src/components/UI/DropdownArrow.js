@@ -7,7 +7,7 @@ class DropdownArrow extends Component {
     const isDropdownActive = this.props.onDropdown;
 
     return (
-      <div className={isDropdownActive ? classes.arrowrotate : ""}>
+      <div className={isDropdownActive ? classes["arrow-rotate"] : ""}>
         <Arrow />
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
+
 import classes from "./Modal.module.css";
 
 class Backdrop extends Component {
@@ -7,8 +8,8 @@ class Backdrop extends Component {
     return (
       <div
         className={
-          this.props.currencyswitcher
-            ? classes.dropdownlistbackdrop
+          this.props.currencySwitcher
+            ? classes["dropdown-list-backdrop"]
             : classes.backdrop
         }
         onClick={this.props.onClose}
@@ -22,7 +23,7 @@ class ModalOverlay extends Component {
     return (
       <div
         className={
-          this.props.currencyswitcher ? classes.dropdownlist : classes.modal
+          this.props.currencySwitcher ? classes["dropdown-list"] : classes.modal
         }
       >
         <div className={classes.content}>{this.props.children}</div>
@@ -39,13 +40,13 @@ class Modal extends Component {
       <Fragment>
         {ReactDOM.createPortal(
           <Backdrop
-            currencyswitcher={this.props.currencyswitcher}
+            currencySwitcher={this.props.currencySwitcher}
             onClose={this.props.onClose}
           />,
           portalElement
         )}
         {ReactDOM.createPortal(
-          <ModalOverlay currencyswitcher={this.props.currencyswitcher}>
+          <ModalOverlay currencySwitcher={this.props.currencySwitcher}>
             {this.props.children}
           </ModalOverlay>,
           portalElement
