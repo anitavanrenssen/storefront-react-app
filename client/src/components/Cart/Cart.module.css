@@ -3,13 +3,10 @@
 }
 
 .heading {
-  font-family: "Raleway";
-  font-style: normal;
   font-weight: 700;
   font-size: 32px;
   line-height: 40px;
   text-transform: uppercase;
-  color: #1d1f22;
   margin-bottom: 55px;
 }
 
@@ -26,12 +23,9 @@
 }
 
 .cart-total-headings p {
-  font-family: "Raleway";
-  font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 28px;
-  color: #1d1f22;
 }
 
 .cart-total-headings p:last-child {

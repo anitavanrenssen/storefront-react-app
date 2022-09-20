@@ -15,13 +15,14 @@
   gap: 32px;
   position: fixed;
   width: 325px;
-  max-height: 90vh;
+  max-height: 85vh;
   right: 72px;
   top: 78px;
   background-color: white;
   padding: 32px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
 }
 
 .dropdown-list {
@@ -30,10 +31,10 @@
   width: 114px;
   right: 9.5%;
   top: 65px;
-  /* filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19)); */
   background: #fff;
   text-align: center;
   z-index: 40;
+  animation: slide-down 300ms ease-out forwards;
 }
 
 .dropdown-list-backdrop {
@@ -43,4 +44,15 @@
   width: 100%;
   height: 100vh;
   z-index: 20;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -17,4 +17,4 @@ export const CategoryContext = React.createContext({
   changeCategory: () => {},
 });
 
-export const CombinedContext = React.createContext({});
+

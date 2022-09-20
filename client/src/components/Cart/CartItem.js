@@ -42,7 +42,7 @@ class CartItem extends Component {
           classes["modal-cart-item-length"]
         }`}
       >
-        <div>
+        <section>
           <div className={`${cartModalStyle && classes["modal-item-heading"]}`}>
             <h4
               className={`${
@@ -74,8 +74,8 @@ class CartItem extends Component {
                 />
               ))}
           </div>
-        </div>
-        <div
+        </section>
+        <section
           className={`${
             cartModalStyle
               ? classes["modal-amount-gallery"]
@@ -116,7 +116,7 @@ class CartItem extends Component {
             name={product.itemName}
             cartModalStyle={cartModalStyle}
           />
-        </div>
+        </section>
       </div>
     );
   }

@@ -1,12 +1,13 @@
 .bag-heading {
   font-weight: 700;
-  font-size: 16px;
-  line-height: 160%;
-  text-align: right;
 }
 
 .items-amount {
   font-weight: 500;
+}
+
+.bag-heading,
+.items-amount {
   font-size: 16px;
   line-height: 160%;
   text-align: right;

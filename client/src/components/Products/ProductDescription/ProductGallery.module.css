@@ -53,3 +53,10 @@
   text-transform: uppercase;
   pointer-events: none;
 }
+
+@media (max-width: 1285px) {
+  .container {
+    justify-content: center;
+    padding: 0 12px;
+  }
+}

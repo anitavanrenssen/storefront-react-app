@@ -19,12 +19,6 @@ const CURRENCIES_QUERY = gql`
 class CurrencySymbol extends Component {
   static contextType = CurrencyContext;
 
-  // componentDidMount() {
-  //   if (this.context.currency === "") {
-  //     this.context.changeCurrency(this.props.currencies[0].label);
-  //   }
-  // }
-
   render() {
     return (
       <Query query={CURRENCIES_QUERY}>

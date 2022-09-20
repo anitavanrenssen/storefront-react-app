@@ -21,6 +21,7 @@ class ProductDetails extends Component {
   addItemHandler(product) {
     let attributeSelection = JSON.parse(localStorage.getItem("attr-key"));
 
+    // if product to be added has attributes and attributes have been selected, add product to cart
     if (
       product.attributes.length > 0 &&
       attributeSelection &&
@@ -36,6 +37,7 @@ class ProductDetails extends Component {
         brand: product.brand,
         qty: 1,
       });
+      // if product to be added does not have attributes, add product to cart without attribute selection
     } else if (product.attributes.length === 0) {
       this.context.addItem({
         id: product.id + "[]",
@@ -51,6 +53,7 @@ class ProductDetails extends Component {
   render() {
     const { product } = this.props;
 
+    //HTML format parsed, sanitized and presented as HTML without using dangerouslySetInnerHTML
     const htmlString = product.description;
     const htmlFrom = (htmlString) => {
       const cleanHtmlString = DOMPurify.sanitize(htmlString, {
@@ -65,11 +68,11 @@ class ProductDetails extends Component {
     });
 
     return (
-      <div>
-        <div>
+      <div className={classes["product-details"]}>
+        <section>
           <h2 className={classes["brand-heading"]}>{product.brand}</h2>
           <h3 className={classes["name-heading"]}>{product.name}</h3>
-        </div>
+        </section>
         {product.attributes.length > 0 && (
           <ProductAttributes
             product={product}
@@ -77,22 +80,22 @@ class ProductDetails extends Component {
             inStock={product.inStock}
           />
         )}
-        <div>
+        <section>
           <h4 className={classes["price-heading"]}>Price:</h4>
           <div className={classes.price}>
             {filteredCurrency[0].currency.symbol}
             {filteredCurrency[0].amount}
           </div>
-        </div>
+        </section>
         <Button
           inStock={product.inStock}
           onClick={this.addItemHandler.bind(this, product)}
         >
           {!product.inStock ? "Out of stock" : "Add to cart"}
         </Button>
-        <div className={classes.description}>
+        <section className={classes.description}>
           {htmlString && htmlFrom(htmlString)}
-        </div>
+        </section>
       </div>
     );
   }

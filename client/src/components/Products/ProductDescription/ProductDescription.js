@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import classes from "./ProductDescription.module.css";
 
 import { gql } from "graphql-tag";
@@ -44,11 +44,10 @@ class ProductDescription extends Component {
   static contextType = CurrencyContext;
 
   render() {
-
     const { currency } = this.context;
 
     return (
-      <div>
+      <Fragment>
         <Query query={PRODUCT_QUERY} variables={{ id: this.props.id }}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
@@ -62,12 +61,12 @@ class ProductDescription extends Component {
                   name={product.name}
                   inStock={product.inStock}
                 />
-                <ProductDetails product={product} currency={currency}/>
+                <ProductDetails product={product} currency={currency} />
               </div>
             );
           }}
         </Query>
-      </div>
+      </Fragment>
     );
   }
 }

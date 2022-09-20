@@ -19,6 +19,7 @@ class CartProvider extends Component {
 
     let updatedItems;
 
+    // if item already exists in cart, only increase quantity of existing product
     if (existingCartItem) {
       const updatedItem = {
         ...existingCartItem,
@@ -26,6 +27,7 @@ class CartProvider extends Component {
       };
       updatedItems = [...this.state.cart];
       updatedItems[existingCartItemIndex] = updatedItem;
+      // if item does not exist in cart, add new product to cart
     } else {
       updatedItems = this.state.cart.concat(item);
     }
@@ -38,9 +40,11 @@ class CartProvider extends Component {
     );
     const existingItem = this.state.cart[existingCartItemIndex];
 
+    // if quantity of product in cart to be removed is 1, remove product
     let updatedItems;
     if (existingItem.qty === 1) {
       updatedItems = this.state.cart.filter((item) => item.id !== id);
+      // if quantity of product in cart to be removed is more than 1, remove 1 from quantity
     } else {
       const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
       updatedItems = [...this.state.cart];

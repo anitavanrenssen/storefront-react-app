@@ -9,10 +9,6 @@
   height: 190px;
 }
 
-.modal-gallery-container {
-  height: auto;
-}
-
 .carousel-container img,
 .modal-carousel-container img {
   width: 100%;
@@ -20,20 +16,7 @@
   object-fit: contain;
 }
 
-.arrow-right {
-  height: 24px;
-  width: 24px;
-  background: rgba(0, 0, 0, 0.73);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  cursor: pointer;
-  border: none;
-}
-
+.arrow-right,
 .arrow-left {
   height: 24px;
   width: 24px;
@@ -41,10 +24,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: rotate(180deg);
   position: absolute;
   bottom: 16px;
-  right: 48px;
   cursor: pointer;
   border: none;
+}
+
+.arrow-right {
+  right: 16px;
+}
+
+.arrow-left {
+  transform: rotate(180deg);
+  right: 48px;
 }

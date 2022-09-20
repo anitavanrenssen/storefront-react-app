@@ -40,29 +40,31 @@
 .amount-container button {
   height: 45px;
   width: 45px;
-  border: 1px solid #1d1f22;
-  background: #fff;
-  cursor: pointer;
 }
 .modal-amount-container button {
   height: 24px;
   width: 24px;
+}
+
+.amount-container button,
+.modal-amount-container button {
   border: 1px solid #1d1f22;
   background: #fff;
   cursor: pointer;
 }
 
 .amount-container span {
-  font-weight: 500;
   font-size: 24px;
-  line-height: 160%;
-  text-align: center;
 }
 .modal-amount-container span {
-  font-weight: 500;
   font-size: 16px;
+}
+
+.amount-container span,
+.modal-amount-container span {
   line-height: 160%;
   text-align: center;
+  font-weight: 500;
 }
 
 .amount-gallery {
@@ -127,4 +129,10 @@
   position: absolute;
   left: 11px;
   transform: rotate(90deg);
+}
+
+@media (max-width: 815px) {
+  .cart-item {
+    flex-direction: column;
+  }
 }

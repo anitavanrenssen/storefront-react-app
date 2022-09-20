@@ -18,10 +18,10 @@ class Cart extends Component {
     return (
       <div className={classes["cart-container"]}>
         <h1 className={classes.heading}>Cart</h1>
-        <div>
+        <section>
           <CartList cart={cart} cartStyle={true} />
-        </div>
-        <div className={classes["cart-totals"]}>
+        </section>
+        <section className={classes["cart-totals"]}>
           <div className={classes["cart-total-headings"]}>
             <p>Tax 21%:</p>
             <p>Quantity:</p>
@@ -43,7 +43,7 @@ class Cart extends Component {
               )}
             </CartContext.Consumer>
           </div>
-        </div>
+        </section>
         <Button inStock={true}>Order</Button>
       </div>
     );

@@ -19,27 +19,25 @@ class HeaderCurrencySwitcher extends Component {
   render() {
     return (
       <Modal currencySwitcher={true} onClose={this.props.onClose}>
-        <div>
-          <ul onClick={this.props.onClick}>
-            <Query query={CURRENCIES_QUERY}>
-              {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error! ${error.message}</p>;
-                const { currencies } = data;
-                return currencies.map((currency, index) => {
-                  return (
-                    <HeaderCurrency
-                      key={index}
-                      currencies={currencies}
-                      currency={currency}
-                      index={index}
-                    />
-                  );
-                });
-              }}
-            </Query>
-          </ul>
-        </div>
+        <ul onClick={this.props.onClick}>
+          <Query query={CURRENCIES_QUERY}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error! ${error.message}</p>;
+              const { currencies } = data;
+              return currencies.map((currency, index) => {
+                return (
+                  <HeaderCurrency
+                    key={index}
+                    currencies={currencies}
+                    currency={currency}
+                    index={index}
+                  />
+                );
+              });
+            }}
+          </Query>
+        </ul>
       </Modal>
     );
   }

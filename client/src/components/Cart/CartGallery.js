@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+
 import { ReactComponent as GalleryArrow } from "../../assets/gallery-arrow.svg";
+
 import classes from "./CartGallery.module.css";
 
 class CartGallery extends Component {

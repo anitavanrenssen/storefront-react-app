@@ -58,7 +58,7 @@ class ProductItem extends Component {
             className={classes.link}
           >
             <div id={this.props.product.id} className={classes.item}>
-              <div className={classes.image}>
+              <section className={classes.image}>
                 <img
                   src={this.props.product.gallery[0]}
                   alt={this.props.product.name}
@@ -66,9 +66,9 @@ class ProductItem extends Component {
                 {!this.props.product.inStock && (
                   <div className={classes["out-of-stock"]}>Out of Stock</div>
                 )}
-              </div>
+              </section>
 
-              <div
+              <section
                 className={`${classes.content} ${
                   !this.props.product.inStock && classes["out-of-stock-content"]
                 }`}
@@ -80,7 +80,7 @@ class ProductItem extends Component {
                   {filteredCurrency[0].currency.symbol}
                   {filteredCurrency[0].amount}
                 </p>
-              </div>
+              </section>
             </div>
           </Link>
           {this.props.product.attributes.length === 0 &&

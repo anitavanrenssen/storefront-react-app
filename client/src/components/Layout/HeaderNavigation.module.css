@@ -17,6 +17,7 @@
   background: #fff;
   text-decoration: none;
   color: #1d1f22;
+  transition: 0.2s;
 }
 .nav-button:hover {
   cursor: pointer;

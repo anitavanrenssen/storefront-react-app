@@ -18,12 +18,9 @@ class CartList extends Component {
 
   render() {
     const { cart, cartModalStyle } = this.props;
+
     return (
-      <div
-        className={
-          cartModalStyle && cart.length > 2 ? classes["cart-list"] : ""
-        }
-      >
+      <div className={cartModalStyle ? classes["cart-list"] : ""}>
         {cart &&
           cart.length > 0 &&
           cart.map((product, index) => {

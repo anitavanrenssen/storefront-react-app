@@ -13,10 +13,7 @@ class HeaderActions extends Component {
           onClick={this.props.onShowCurrencySwitcher}
           onShow={this.props.onShow}
         />
-
-        <div>
-          <HeaderCartButton onClick={this.props.onShowCart} />
-        </div>
+        <HeaderCartButton onClick={this.props.onShowCart} />
       </div>
     );
   }

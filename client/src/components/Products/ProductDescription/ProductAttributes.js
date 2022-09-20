@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import { CartContext } from "../../../store/contexts";
 
@@ -53,7 +53,7 @@ class ProductAttributes extends Component {
     const { product, cartModalStyle, cartStyle, inStock } = this.props;
 
     return (
-      <div>
+      <Fragment>
         {
           <div className={classes.attributes}>
             {product.attributes.map((attribute) => {
@@ -149,7 +149,7 @@ class ProductAttributes extends Component {
             })}
           </div>
         }
-      </div>
+      </Fragment>
     );
   }
 }

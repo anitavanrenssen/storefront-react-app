@@ -10,7 +10,6 @@ class HeaderCurrencySwitcherButton extends Component {
     return (
       <button className={classes.button} onClick={this.props.onClick}>
         <CurrencySymbol currencySwitcherStyle={true} />
-
         <DropdownArrow onDropdown={this.props.onShow} />
       </button>
     );

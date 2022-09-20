@@ -1,11 +1,21 @@
 .attribute-heading {
   font-family: "Roboto Condensed";
-  font-style: normal;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 18px;
   line-height: 18px;
   margin-bottom: 8px;
+}
+
+.swatch-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-swatch-buttons {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 8px 0;
 }
 
 .swatch-button {
@@ -22,8 +32,25 @@
 
 .active-swatch {
   cursor: pointer;
-  border: 1px solid #fff !important;
+  border: 1px solid #fff;
   box-shadow: 0 0 0 1px #5ece7b;
+}
+
+.swatch-button[disabled] {
+  cursor: auto;
+  pointer-events: none;
+}
+
+.text-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 38px;
+}
+
+.modal-text-buttons {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 8px 0;
 }
 
 .text-button {
@@ -36,6 +63,8 @@
 
 .text-button[disabled] {
   opacity: 0.7;
+  cursor: auto;
+  pointer-events: none;
 }
 
 .modal-text-button {
@@ -46,6 +75,12 @@
   line-height: 160%;
   border: 1px solid #1d1f22;
   background: #fff;
+}
+
+.active-text {
+  background: #1d1f22;
+  color: #fff;
+  cursor: pointer;
 }
 
 .modal-attribute-button {
@@ -61,50 +96,11 @@
   text-align: center;
 }
 
-.active-text {
-  background: #1d1f22;
-  color: #fff;
-  cursor: pointer;
-}
-
-.text-buttons {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 38px;
-}
-
-.modal-text-buttons {
-  display: flex;
-  gap: 8px;
-  margin: 8px 0 8px 0;
-}
-
-.swatch-buttons {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 38px;
-}
-.modal-swatch-buttons {
-  display: flex;
-  gap: 8px;
-  margin: 8px 0 8px 0;
-}
-
 .modal-attribute-heading {
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   color: #1d1f22;
-}
-
-.swatch-button[disabled] {
-  cursor: auto;
-  pointer-events: none;
-}
-
-.text-button[disabled] {
-  cursor: auto;
-  pointer-events: none;
 }
 
 .white-swatch-button {
@@ -117,20 +113,20 @@
 }
 
 .selected-swatch-attribute {
-  border: 1px solid #fff !important;
+  border: 1px solid #fff;
   box-shadow: 0 0 0 1px #5ece7b;
 }
 
 .active-white-swatch-button {
-  width: 31px !important;
-  height: 31px !important;
-  border: 1px solid #1d1f22 !important;
-  box-shadow: 0 0 0 1px #5ece7b !important;
+  width: 31px;
+  height: 31px;
+  border: 1px solid #1d1f22;
+  box-shadow: 0 0 0 1px #5ece7b;
 }
 
 .modal-active-white-swatch-button {
-  width: 15px !important;
-  height: 15px !important;
-  border: 1px solid #1d1f22 !important;
-  box-shadow: 0 0 0 1px #5ece7b !important;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #1d1f22;
+  box-shadow: 0 0 0 1px #5ece7b;
 }
