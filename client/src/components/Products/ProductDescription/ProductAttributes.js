@@ -44,8 +44,9 @@ class ProductAttributes extends Component {
     );
 
     this.setState({
-      selectedAttributesObj,
+      defaultAttributes: selectedAttributesObj,
     });
+
     this.setSelectedItem(selectedAttributesObj);
   }
 

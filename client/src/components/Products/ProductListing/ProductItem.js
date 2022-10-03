@@ -31,14 +31,32 @@ class ProductItem extends Component {
   }
 
   addToCartHandler(product) {
-    this.context.addItem({
-      id: product.id + "[]",
-      itemName: product.name,
-      gallery: product.gallery,
-      prices: product.prices,
-      brand: product.brand,
-      qty: 1,
-    });
+    if (product.attributes.length > 0) {
+      const selectedAttributesObj = product.attributes.reduce((prev, curr) => {
+        prev[curr.name] = curr.items[0].displayValue;
+        return prev;
+      }, {});
+
+      this.context.addItem({
+        id: product.id + JSON.stringify(selectedAttributesObj),
+        itemName: product.name,
+        gallery: product.gallery,
+        selectedAttributes: selectedAttributesObj,
+        attributes: product.attributes,
+        prices: product.prices,
+        brand: product.brand,
+        qty: 1,
+      });
+    } else {
+      this.context.addItem({
+        id: product.id + "[]",
+        itemName: product.name,
+        gallery: product.gallery,
+        prices: product.prices,
+        brand: product.brand,
+        qty: 1,
+      });
+    }
   }
 
   render() {
@@ -83,13 +101,12 @@ class ProductItem extends Component {
               </section>
             </div>
           </Link>
-          {this.props.product.attributes.length === 0 &&
-            this.state.showCartButton && (
-              <ProductCartButton
-                inStock={this.props.product.inStock}
-                onClick={this.addToCartHandler.bind(this, this.props.product)}
-              />
-            )}
+          {this.state.showCartButton && (
+            <ProductCartButton
+              inStock={this.props.product.inStock}
+              onClick={this.addToCartHandler.bind(this, this.props.product)}
+            />
+          )}
         </div>
       </Card>
     );
